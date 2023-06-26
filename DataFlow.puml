@@ -1,0 +1,95 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+repeat
+    :Task **ReadLed**;
+        if (new data from **SerialUSB** available?) then
+            -[#palegreen]->yes;
+            #palegreen:parse, set **new LedData**;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+    :Task **ShowLed**;
+        if (**new LedData** available?) then
+            -[#palegreen]->yes;
+            #palegreen:set next color;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+    :Task **WriteKnob1**;
+        if (new data exists) then
+            -[#palegreen]->yes;
+            #palegreen:output it via **SerialUSB**;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+    :Task **WriteKnob2**;
+        if (new data exists) then
+            -[#palegreen]->yes;
+            #palegreen:output it via **SerialUSB**;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+    :Task **WriteJoystick**;
+        if (new data exists) then
+            -[#palegreen]->yes;
+            #palegreen:output it via **SerialUSB**;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+    :Task **WriteCapButton**;
+        if (new data exists) then
+            -[#palegreen]->yes;
+            #palegreen:output it via **SerialUSB**;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+    :Task **WriteMkButtons**;
+        if (new data exists) then
+            -[#palegreen]->yes;
+            #palegreen:output it via **SerialUSB**;
+        else
+            -[#lightblue]->no;
+            #lightblue:skip;
+        endif
+repeat while (device still on?)
+':ClickServlet.handleRequest();
+':new page;
+'if (Page.onSecurityCheck) then (true)
+'  :Page.onInit();
+'  if (isForward?) then (no)
+'    :Process controls;
+'    if (continue processing?) then (no)
+'      stop
+'    endif
+'
+'    if (isPost?) then (yes)
+'      :Page.onPost();
+'    else (no)
+'      :Page.onGet();
+'    endif
+'    :Page.onRender();
+'  endif
+'else (false)
+'endif
+'
+'if (do redirect?) then (yes)
+'  :redirect process;
+'else
+'  if (do forward?) then (yes)
+'    :Forward request;
+'  else (no)
+'    :Render page template;
+'  endif
+'endif
+
+stop
+
+@enduml

@@ -1,0 +1,1 @@
+[{"type":"LED","ledIndex":0,"toColor":[255,0,0],"misc":{"brightness":255}},{"type":"LED","ledIndex":1,"toColor":[0,0,255],"misc":{"brightness":255}}]

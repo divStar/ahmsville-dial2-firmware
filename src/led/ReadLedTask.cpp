@@ -2,9 +2,7 @@
 // Created by Igor Voronin on 18.06.23.
 //
 #include "ReadLedTask.h"
-
-const int BUFFER_SIZE = 2048;
-const size_t MAX_JSON_ARRAY_CAPACITY = JSON_ARRAY_SIZE(13);
+#include "logger/Logger.h"
 
 ReadLedTask::ReadLedTask(Vector<LedDataDto *> *dataToProcess) : dataToProcess(dataToProcess) {
     filterDoc[0]["ledIndex"] = true;
@@ -17,28 +15,27 @@ void ReadLedTask::onCallback() {
         char buffer[BUFFER_SIZE];
         size_t size = SerialUSB.readBytesUntil('\n', buffer, BUFFER_SIZE);
         if (size > 0) {
-            SerialUSB.println((String)"IN " + size + " character(s): " + String(buffer, size));
+            Log.traceln("Received %d character(s): %s", size, String(buffer, size).c_str());
 
             StaticJsonDocument<BUFFER_SIZE> jsonDoc;
             DeserializationError error = deserializeJson(jsonDoc, buffer, BUFFER_SIZE,
                                                          DeserializationOption::Filter(filterDoc));
             if (error) {
-                SerialUSB.println((String) "deserializeJson() failed: " + error.c_str());
+                Log.errorln("deserializeJson() failed: %s", error.c_str());
                 return;
             }
 
             JsonArray ledDataJsonArray = jsonDoc.as<JsonArray>();
-            SerialUSB.println((String) "Parsed " + ledDataJsonArray.size() + " LedDataDso objects");
+            Log.traceln("Parsed %d LedDataDto objects!", ledDataJsonArray.size());
 
             for (JsonObject ledDataJson: ledDataJsonArray) {
                 if (isValidLedDataJson(ledDataJson)) {
-                    SerialUSB.println((String) "Adding LedDataDto for LED "
-                            + ledDataJson["ledIndex"].as<LedIndex>() + " with RGB("
-                            + ledDataJson["toColor"][0].as<byte>() + ", "
-                            + ledDataJson["toColor"][1].as<byte>() + ", "
-                            + ledDataJson["toColor"][2].as<byte>() + ") and brightness "
-                            + ledDataJson["misc"]["brightness"].as<byte>()
-                    );
+                    Log.traceln("Adding LedDataDto for LED %d with RGB(%d,%d,%d) and brightness %d",
+                                ledDataJson["ledIndex"].as<LedIndex>(),
+                                ledDataJson["toColor"][0].as<byte>(),
+                                ledDataJson["toColor"][0].as<byte>(),
+                                ledDataJson["toColor"][0].as<byte>(),
+                                ledDataJson["misc"]["brightness"].as<byte>());
 
                     this->dataToProcess->push_back(new LedDataDto(
                             ledDataJson["ledIndex"],
@@ -50,7 +47,7 @@ void ReadLedTask::onCallback() {
                 }
             }
 
-            SerialUSB.println((String) "New dataToProcess count: " + dataToProcess->size());
+            Log.traceln("New dataToProcess count: %d", dataToProcess->size());
         }
     }
 }
@@ -60,33 +57,31 @@ bool ReadLedTask::isValidLedDataJson(JsonObject ledDataJson) {
                            ledDataJson["ledIndex"] >= 0 &&
                            ledDataJson["ledIndex"] <= 12;
     if (!isLedIndexValid) {
-        SerialUSB.println((String) "LedIndex is invalid (" + ledDataJson["ledIndex"].as<LedIndex>() + ")!");
+        Log.error("LedIndex is invalid: %d", ledDataJson["ledIndex"].as<LedIndex>());
     }
 
     bool isToColorRValid = ledDataJson["toColor"][0].is<byte>();
     if (!isToColorRValid) {
-        SerialUSB.println((String) "toColor[R] is invalid (" + ledDataJson["toColor"][0].as<byte>() + ")!");
+        Log.error("toColor[R] is invalid: %d", ledDataJson["toColor"][0].as<LedIndex>());
     }
 
     bool isToColorGValid = ledDataJson["toColor"][1].is<byte>();
     if (!isToColorGValid) {
-        SerialUSB.println((String) "toColor[G] is invalid (" + ledDataJson["toColor"][1].as<byte>() + ")!");
+        Log.error("toColor[G] is invalid: %d", ledDataJson["toColor"][1].as<LedIndex>());
     }
 
     bool isToColorBValid = ledDataJson["toColor"][2].is<byte>();
     if (!isToColorBValid) {
-        SerialUSB.println((String) "toColor[B] is invalid (" + ledDataJson["toColor"][2].as<byte>() + ")!");
+        Log.error("toColor[B] is invalid: %d", ledDataJson["toColor"][2].as<LedIndex>());
     }
 
     bool isBrightnessValid = ledDataJson["misc"]["brightness"].is<byte>();
     if (!isBrightnessValid) {
-        SerialUSB.println((String) "brightness is invalid (" + ledDataJson["misc"]["brightness"].as<byte>() + ")!");
+        Log.error("brightness is invalid: %d", ledDataJson["misc"]["brightness"].as<LedIndex>());
     }
 
-    SerialUSB.println((String) "Validation results (LedIndex, r, g, b, brightness): "
-            + isLedIndexValid + ", "
-            + isToColorRValid + ", " + isToColorGValid + ", " + isToColorBValid + ", "
-            + isBrightnessValid);
+    Log.traceln("Validation results (LedIndex, r, g, b, brightness; 0 = invalid, 1 = valid): %b, %b, %b, %b, %b",
+                isLedIndexValid, isToColorRValid, isToColorGValid, isToColorBValid, isBrightnessValid);
 
     return isLedIndexValid && isToColorRValid && isToColorGValid && isToColorBValid && isBrightnessValid;
 }

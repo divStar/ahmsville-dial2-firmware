@@ -5,7 +5,8 @@
 #include "RotaryEncoder.h"
 
 RotaryEncoder::RotaryEncoder(int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
-        : pin0(pin0), pin1(pin1), pinInterrupt0(pinInterrupt0), pinInterrupt1(pinInterrupt1) {
+        : pin0(pin0), pin1(pin1), pinInterrupt0(pinInterrupt0), pinInterrupt1(pinInterrupt1),
+          filteredSensor1Value(0.0), filteredSensor2Value(0.0) {
     pinMode(this->pin0, INPUT);
     pinMode(this->pin1, INPUT);
     pinMode(this->pinInterrupt0, INPUT);
@@ -14,70 +15,44 @@ RotaryEncoder::RotaryEncoder(int pin0, int pin1, int pinInterrupt0, int pinInter
 
 void RotaryEncoder::readValues() {
     // Read new values
-    this->currentRotationDirection = this->getRotationDirection(
-            analogRead(this->pin0),
-            analogRead(this->pin1)
-    );
-    this->pinInterrupt0Value = digitalRead(pinInterrupt0);
-    this->pinInterrupt1Value = digitalRead(pinInterrupt1);
+    this->values[0] = static_cast<float>(analogRead(this->pin0));
+    this->values[1] = static_cast<float>(analogRead(this->pin1));
+
+    // Smoothen the analog values
+    this->values[0] = filteredSensor1Value.update(this->values[0]);
+    this->values[1] = filteredSensor2Value.update(this->values[1]);
+
+    this->rotationDelta = getRotationAngle();
 }
 
-int RotaryEncoder::getPin0Value() {
-    return this->pin0Value;
+float RotaryEncoder::getRotationDelta() const {
+    return this->rotationDelta;
 }
 
-int RotaryEncoder::getPin1Value() {
-    return this->pin1Value;
+float RotaryEncoder::getRotationAngle() {
+    // Get sensor values
+    auto normalizedSensor1Value = this->values[0] - SENSOR_MIDPOINT;
+    auto normalizedSensor2Value = this->values[1] - SENSOR_MIDPOINT;
+
+    // Calculate intermediate values
+    auto currentRotationAngle = atan2(normalizedSensor1Value, normalizedSensor2Value);
+    auto rotationAngleDelta = getRotationAngleDelta(currentRotationAngle);
+
+    // Save the current rotation angle as the previous one for next iteration
+    previousRotationAngle = currentRotationAngle;
+
+    return rotationAngleDelta;
 }
 
-int RotaryEncoder::getCurrentRotationDirection() {
-    return this->currentRotationDirection;
-}
+float RotaryEncoder::getRotationAngleDelta(float currentRotationAngle) const {
+    auto rotationAngleDelta = currentRotationAngle - previousRotationAngle;
 
-int RotaryEncoder::applyMovingAverageFilter(int rawValue, int *filterBuffer) {
-    // Store the new value in the filter buffer
-    filterBuffer[filterIndex] = rawValue;
-
-    // Update the filter index
-    filterIndex = (filterIndex + 1) % FILTER_SIZE;
-
-    // Calculate the average
-    int sum = 0;
-    for (int i = 0; i < FILTER_SIZE; ++i) {
-        sum += filterBuffer[i];
+    if (rotationAngleDelta > M_PI) {
+        rotationAngleDelta -= 2 * M_PI;
+    } else if (rotationAngleDelta < -M_PI) {
+        rotationAngleDelta += 2 * M_PI;
     }
-    int average = sum / FILTER_SIZE;
 
-    return average;
+    return rotationAngleDelta;
 }
 
-int RotaryEncoder::getRotationDirection(int rawValue0, int rawValue1) {
-    // Apply the moving average filter to each sensor
-    int filteredValue0 = applyMovingAverageFilter(rawValue0, filteredPin0Values);
-    int filteredValue1 = applyMovingAverageFilter(rawValue1, filteredPin1Values);
-
-    // Calculate the change in values
-    int delta0 = filteredValue0 - this->pin0Value;
-    int delta1 = filteredValue1 - this->pin1Value;
-
-    // Update the previous values
-    this->pin0Value = filteredValue0;
-    this->pin1Value = filteredValue1;
-
-    // Determine the rotation direction
-    if (filteredValue0 >= 150 && filteredValue0 < 250 && pinInterrupt0Value == 1 && pinInterrupt1Value == 0) {
-        return 1;  // Clockwise rotation
-    } else if (filteredValue0 >= 250 && filteredValue0 < 350 && pinInterrupt0Value == 0 && pinInterrupt1Value == 1) {
-        return -1; // Counterclockwise rotation
-    } else {
-        return 0;  // No rotation or indeterminate state
-    }
-}
-
-int RotaryEncoder::getPin0InterruptValue() {
-    return this->pinInterrupt0Value;
-}
-
-int RotaryEncoder::getPin1InterruptValue() {
-    return this->pinInterrupt1Value;
-}

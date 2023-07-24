@@ -20,8 +20,8 @@ public:
 private:
     static const int BUFFER_SIZE = 2048;
 
+    StaticJsonDocument<128> filterDoc; // this JSON describes what to filter for
     static bool isValidLedDataJson(JsonObject ledDataJson);
-    StaticJsonDocument<128> filterDoc;
 };
 
 

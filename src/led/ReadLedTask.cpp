@@ -62,7 +62,7 @@ bool ReadLedTask::isValidLedDataJson(JsonObject ledDataJson) {
 
     bool isToColorRValid = ledDataJson["toColor"][0].is<byte>();
     if (!isToColorRValid) {
-        Log.error("toColor[R] is invalid: %d", ledDataJson["toColor"][0].as<LedIndex>());
+        Log.error("toColor[measureMentNoiseCovariance] is invalid: %d", ledDataJson["toColor"][0].as<LedIndex>());
     }
 
     bool isToColorGValid = ledDataJson["toColor"][1].is<byte>();

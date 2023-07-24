@@ -6,6 +6,7 @@
 #define ROTARYENCODER_H
 
 #include "logger/Logger.h"
+#include "KalmanFilter.h"
 
 class RotaryEncoder {
 public:
@@ -13,38 +14,26 @@ public:
 
     void readValues();
 
-    int getPin0Value();
-
-    int getPin1Value();
-
-    int getPin0InterruptValue();
-
-    int getPin1InterruptValue();
-
-    int getCurrentRotationDirection();
+    float getRotationDelta() const;
 
 private:
-    static const int FILTER_SIZE = 40;
+    static const int SENSOR_MIDPOINT = 500;
 
     int pin0;
     int pin1;
     int pinInterrupt0;
     int pinInterrupt1;
 
-    int pin0Value = 0;
-    int pin1Value = 0;
-    int filteredPin0Values[FILTER_SIZE];
-    int filteredPin1Values[FILTER_SIZE];
-    int filterIndex = 0;
-    int pinInterrupt0Value = 0;
-    int pinInterrupt1Value = 0;
+    float *values = new float[2]{0.0, 0.0};
+    float previousRotationAngle = 0;
+    float rotationDelta = 0;
 
-    int currentRotationDirection = 0;
+    KalmanFilter filteredSensor1Value;
+    KalmanFilter filteredSensor2Value;
 
-    int applyMovingAverageFilter(int rawValue, int *filterBuffer);
+    float getRotationAngle();
 
-    int getRotationDirection(int rawValue0, int rawValue1);
+    float getRotationAngleDelta(float currentRotationAngle) const;
 };
-
 
 #endif //ROTARYENCODER_H

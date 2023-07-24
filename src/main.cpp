@@ -6,7 +6,6 @@
 #include "led/ShowLedTask.h"
 #include "led/LedDataDto.h"
 #include "macrokey/WriteMacroKeyTask.h"
-//#include "knob/UpperKnobTask.h"
 #include "knob/KnobTask.h"
 
 #define NUM_LEDS            13
@@ -20,13 +19,13 @@ Vector<LedDataDto *> dataToProcess;
 ReadLedTask readLedTask = ReadLedTask(&dataToProcess);
 ShowLedTask showLedTask = ShowLedTask(&dataToProcess);
 WriteMacroKeyTask writeMacroKeyTask = WriteMacroKeyTask();
-//UpperKnobTask upperKnobTask = UpperKnobTask();
-KnobTask lowerKnobTask = KnobTask(A2, A3, 42, 13);
+KnobTask upperKnobTask = KnobTask("UpperKnob", A1, A0, 28, 27);
+KnobTask lowerKnobTask = KnobTask("LowerKnob", A2, A3, 42, 13);
 
 Task readLedTaskShared(0, TASK_FOREVER, []() { readLedTask.onCallback(); }, &scheduler, true);
 Task showLedTaskShared(0, TASK_FOREVER, []() { showLedTask.onCallback(); }, &scheduler, true);
 Task writeMacroKeyTaskShared(0, TASK_FOREVER, []() { writeMacroKeyTask.onCallback(); }, &scheduler, true);
-//Task upperKnobTaskShared(0, TASK_FOREVER, []() { upperKnobTask.onCallback(); }, &scheduler, true);
+Task upperKnobTaskShared(0, TASK_FOREVER, []() { upperKnobTask.onCallback(); }, &scheduler, true);
 Task lowerKnobTaskShared(0, TASK_FOREVER, []() { lowerKnobTask.onCallback(); }, &scheduler, true);
 
 void setup() {
@@ -40,7 +39,7 @@ void setup() {
     dataToProcess.setStorage(ledData, NUM_LEDS, 0);
     showLedTask.onSetup();
     writeMacroKeyTask.onSetup();
-    //upperKnobTask.onSetup();
+    upperKnobTask.onSetup();
     lowerKnobTask.onSetup();
 
     Log.noticeln("Device initialized: %d", -1);

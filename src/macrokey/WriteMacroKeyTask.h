@@ -4,12 +4,14 @@
 
 #ifndef DIALER_WRITEMACROKEYTASK_H
 #define DIALER_WRITEMACROKEYTASK_H
-#include "macrokey/MacroKeyDevice.h"
-#include "DialTask.h"
 
-class WriteMacroKeyTask: public DialTask {
+#include "macrokey/MacroKeyDevice.h"
+#include "interfaces/IDialTask.h"
+
+class WriteMacroKeyTask : public IDialTask {
 public:
     void onSetup() override;
+
     void onCallback() override;
 };
 

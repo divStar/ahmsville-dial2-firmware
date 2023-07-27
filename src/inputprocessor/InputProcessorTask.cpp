@@ -1,0 +1,32 @@
+//
+// Created by Igor Voronin on 25.07.23.
+//
+
+#include "InputProcessorTask.h"
+
+InputProcessorTask::InputProcessorTask(LinkedList<RawDataDto *> *messagesToProcess, Stream *serial)
+        : dataToProcess(messagesToProcess), serial(serial) {}
+
+void InputProcessorTask::onSetup() {}
+
+void InputProcessorTask::onCallback() {
+    if (serial->available()) {
+        char readBuffer[BUFFER_SIZE];
+        size_t dataSize = serial->readBytesUntil(TERMINATOR, readBuffer, BUFFER_SIZE);
+        if (dataSize > 0) {
+            processInputData(readBuffer, dataSize);
+        }
+    }
+}
+
+void InputProcessorTask::processInputData(char readBuffer[BUFFER_SIZE], size_t dataSize) {
+    char *dataBuffer = new char[dataSize + 1];
+    strncpy(dataBuffer, readBuffer, dataSize);
+    // null-terminate the dataBuffer
+    dataBuffer[dataSize] = '\0';
+
+    dataToProcess->add(new RawDataDto(dataBuffer, millis()));
+
+    // clear buffer
+    memset(readBuffer, 0, BUFFER_SIZE);
+}

@@ -12,10 +12,10 @@ public:
     float update(float measurement);
 
 private:
-    const float PROCESS_NOISE_COVARIANCE = 0.02;
-    const float MEASUREMENT_NOISE_COVARIANCE = 9.0;
-    const float INITIAL_ESTIMATION_ERROR_COVARIANCE = 1.0;
-    const float INITIAL_KALMAN_GAIN = 0.0;
+    constexpr static const float PROCESS_NOISE_COVARIANCE = 0.02;
+    constexpr static const float MEASUREMENT_NOISE_COVARIANCE = 9.0;
+    constexpr static const float INITIAL_ESTIMATION_ERROR_COVARIANCE = 1.0;
+    constexpr static const float INITIAL_KALMAN_GAIN = 0.0f;
 
     float processNoiseCovariance;
     float measureMentNoiseCovariance;

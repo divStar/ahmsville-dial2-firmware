@@ -3,8 +3,9 @@
 //
 #include "LedDataDto.h"
 
-LedDataDto::LedDataDto(LedIndex ledIndex, byte r, byte g, byte b, byte brightness) : ledIndex(ledIndex), r(r), g(g), b(b),
-                                                                                brightness(brightness) {}
+LedDataDto::LedDataDto(LedIndex ledIndex, byte r, byte g, byte b, byte brightness) : ledIndex(ledIndex), r(r), g(g),
+                                                                                     b(b),
+                                                                                     brightness(brightness) {}
 
 LedIndex LedDataDto::getIndex() const {
     return ledIndex;

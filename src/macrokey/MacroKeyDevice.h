@@ -10,6 +10,7 @@
 class MacroKeyDevice {
 public:
     static void init();
+
 private:
     static MacroKey keys[];
 };

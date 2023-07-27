@@ -13,10 +13,15 @@ public:
     LedDataDto(LedIndex ledIndex, byte r, byte g, byte b, byte brightness);
 
     LedIndex getIndex() const;
+
     byte getR() const;
+
     byte getG() const;
+
     byte getB() const;
+
     byte getBrightness() const;
+
 private:
     LedIndex ledIndex;
     byte r;

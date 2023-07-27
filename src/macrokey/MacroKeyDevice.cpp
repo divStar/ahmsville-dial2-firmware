@@ -5,10 +5,10 @@
 #include "MacroKeyDevice.h"
 
 MacroKey MacroKeyDevice::keys[5] = {MacroKey(0, 0),
-                    MacroKey(1, 1),
-                    MacroKey(2, 5),
-                    MacroKey(3, 10),
-                    MacroKey(4, 12)
+                                    MacroKey(1, 1),
+                                    MacroKey(2, 5),
+                                    MacroKey(3, 10),
+                                    MacroKey(4, 12)
 };
 
 void MacroKeyDevice::init() {

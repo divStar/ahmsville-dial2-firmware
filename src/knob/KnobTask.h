@@ -6,11 +6,11 @@
 #define DIALER_KNOBTASK_H
 
 #include <Arduino.h>
-#include "DialTask.h"
+#include "interfaces/IDialTask.h"
 #include "RotaryEncoder.h"
 #include "ArduinoJson.h"
 
-class KnobTask : public DialTask {
+class KnobTask : public IDialTask {
 public:
     explicit KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1);
 
@@ -25,7 +25,7 @@ private:
 
     const char *name;
 
-    RotaryEncoder knob;
+    RotaryEncoder *knob;
 };
 
 

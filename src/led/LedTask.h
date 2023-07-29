@@ -8,13 +8,13 @@
 #include <FastLED.h>
 #include <LinkedList.h>
 #include "ArduinoJson.h"
-#include "interfaces/IDialTask.h"
 #include "LedIndex.h"
 #include "interfaces/IInputConsumer.h"
 #include "inputprocessor/RawDataDto.h"
-#include "../logger/Logger.h"
+#include "logger/Logger.h"
+#include "interfaces/ISchedulableDialTask.h"
 
-class LedTask : public IDialTask, private IInputConsumer {
+class LedTask : public ISchedulableDialTask, private IInputConsumer {
 public:
     explicit LedTask(LinkedList<RawDataDto *> *messagesToProcess);
 

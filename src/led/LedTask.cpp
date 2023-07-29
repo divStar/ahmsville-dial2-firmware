@@ -15,6 +15,8 @@ CRGB leds[NUM_LEDS];
 
 LedTask::LedTask(LinkedList<RawDataDto *> *messagesToProcess)
         : messagesToProcess(messagesToProcess) {
+    this->setInterval(0);
+    this->setIterations(TASK_FOREVER);
     filterDoc[0]["type"] = true;
     filterDoc[0]["ledIndex"] = true;
     filterDoc[0]["toColor"] = true;

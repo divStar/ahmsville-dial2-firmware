@@ -8,9 +8,9 @@
 #include <LinkedList.h>
 #include "RawDataDto.h"
 #include "logger/Logger.h"
-#include "interfaces/IDialTask.h"
+#include "interfaces/ISchedulableDialTask.h"
 
-class InputProcessorTask : public IDialTask {
+class InputProcessorTask : public ISchedulableDialTask {
 public:
     explicit InputProcessorTask(LinkedList<RawDataDto *> *messagesToProcess, Stream *serial);
 
@@ -22,7 +22,7 @@ private:
     static const char TERMINATOR = '\n';
     static const int BUFFER_SIZE = 2048;
 
-    LinkedList<RawDataDto *> *dataToProcess;
+    LinkedList<RawDataDto *> *messagesToProcess;
     Stream *serial;
 
     void processInputData(char readBuffer[BUFFER_SIZE], size_t dataSize);

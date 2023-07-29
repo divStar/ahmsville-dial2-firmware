@@ -6,6 +6,8 @@
 
 HapticTask::HapticTask(LinkedList<RawDataDto *> *messagesToProcess)
         : messagesToProcess(messagesToProcess) {
+    this->setInterval(0);
+    this->setIterations(TASK_FOREVER);
     filterDoc["type"] = true;
     filterDoc["strength"] = true;
 }

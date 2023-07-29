@@ -5,6 +5,8 @@
 #ifndef DIALER_IDIALTASK_H
 #define DIALER_IDIALTASK_H
 
+#include <TaskSchedulerDeclarations.h>
+
 class IDialTask {
 public:
     virtual void onSetup() {};

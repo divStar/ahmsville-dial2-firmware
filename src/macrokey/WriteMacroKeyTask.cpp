@@ -3,6 +3,11 @@
 //
 #include "WriteMacroKeyTask.h"
 
+WriteMacroKeyTask::WriteMacroKeyTask() {
+    this->setInterval(0);
+    this->setIterations(TASK_FOREVER);
+}
+
 void WriteMacroKeyTask::onSetup() {
     MacroKeyDevice::init();
 }

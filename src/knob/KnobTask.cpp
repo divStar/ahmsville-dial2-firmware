@@ -5,7 +5,10 @@
 #include "KnobTask.h"
 
 KnobTask::KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
-        : name(name), knob(new RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {}
+        : name(name), knob(new RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {
+    this->setInterval(0);
+    this->setIterations(TASK_FOREVER);
+}
 
 void KnobTask::onSetup() {
     Log.traceln("Auto-Calibrating %s...", this->name);

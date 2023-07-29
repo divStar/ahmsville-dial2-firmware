@@ -6,10 +6,12 @@
 #define DIALER_WRITEMACROKEYTASK_H
 
 #include "macrokey/MacroKeyDevice.h"
-#include "interfaces/IDialTask.h"
+#include "interfaces/ISchedulableDialTask.h"
 
-class WriteMacroKeyTask : public IDialTask {
+class WriteMacroKeyTask : public ISchedulableDialTask {
 public:
+    WriteMacroKeyTask();
+
     void onSetup() override;
 
     void onCallback() override;

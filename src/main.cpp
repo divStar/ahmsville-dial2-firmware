@@ -8,6 +8,7 @@
 #include "macrokey/WriteMacroKeyTask.h"
 #include "knob/KnobTask.h"
 #include "haptic/HapticTask.h"
+#include "captouch/CapacitativeTouchTask.h"
 
 #define NUM_LEDS            13
 #define SERIAL_USB_TIMEOUT  200
@@ -23,14 +24,13 @@ WriteMacroKeyTask *writeMacroKeyTask;
 KnobTask *upperKnobTask;
 KnobTask *lowerKnobTask;
 HapticTask *hapticTask;
+CapacitativeTouchTask *capacitativeTouchTask;
 
-Task inputProcessorTaskShared(0, TASK_FOREVER, []() { inputProcessorTask->onCallback(); }, &scheduler, true);
-Task messagesCleanerTaskShared(0, TASK_FOREVER, []() { messagesCleanerTask->onCallback(); }, &scheduler, true);
-Task writeMacroKeyTaskShared(0, TASK_FOREVER, []() { writeMacroKeyTask->onCallback(); }, &scheduler, true);
-Task ledTaskShared(0, TASK_FOREVER, []() { ledTask->onCallback(); }, &scheduler, true);
-Task upperKnobTaskShared(0, TASK_FOREVER, []() { upperKnobTask->onCallback(); }, &scheduler, true);
-Task lowerKnobTaskShared(0, TASK_FOREVER, []() { lowerKnobTask->onCallback(); }, &scheduler, true);
-Task hapticTaskShared(0, TASK_FOREVER, []() { hapticTask->onCallback(); }, &scheduler, true);
+void createTasks();
+
+void setupTasks();
+
+void addTasksToScheduler();
 
 void setup() {
     delay(5000);
@@ -40,6 +40,17 @@ void setup() {
 
     setupLogger();
 
+    createTasks();
+    setupTasks();
+    addTasksToScheduler();
+
+    Log.noticeln("Device initialized");
+}
+
+/**
+ * This method creates all scheduled tasks, that run within this program.
+ */
+void createTasks() {
     inputProcessorTask = new InputProcessorTask(&messagesToProcess, &SerialUSB);
     messagesCleanerTask = new MessagesCleanerTask(&messagesToProcess);
     ledTask = new LedTask(&messagesToProcess);
@@ -47,16 +58,52 @@ void setup() {
     upperKnobTask = new KnobTask("UpperKnob", A1, A0, 38, 27);
     lowerKnobTask = new KnobTask("LowerKnob", A2, A3, 42, 13);
     hapticTask = new HapticTask(&messagesToProcess);
+    capacitativeTouchTask = new CapacitativeTouchTask();
+}
 
+/**
+ * This method sets up all scheduled tasks.
+ */
+void setupTasks() {
     inputProcessorTask->onSetup();
-    messagesCleanerTask->onSetup();
-    ledTask->onSetup();
-    writeMacroKeyTask->onSetup();
-    lowerKnobTask->onSetup();
-    upperKnobTask->onSetup();
-    hapticTask->onSetup();
+    inputProcessorTask->setCallback([]() { inputProcessorTask->onCallback(); });
 
-    Log.noticeln("Device initialized");
+    writeMacroKeyTask->onSetup();
+    writeMacroKeyTask->setCallback([]() { writeMacroKeyTask->onCallback(); });
+
+    messagesCleanerTask->onSetup();
+    messagesCleanerTask->setCallback([]() { messagesCleanerTask->onCallback(); });
+
+    ledTask->onSetup();
+    ledTask->setCallback([]() { ledTask->onCallback(); });
+
+    lowerKnobTask->onSetup();
+    lowerKnobTask->setCallback([]() { lowerKnobTask->onCallback(); });
+
+    upperKnobTask->onSetup();
+    upperKnobTask->setCallback([]() { upperKnobTask->onCallback(); });
+
+    hapticTask->onSetup();
+    hapticTask->setCallback([]() { hapticTask->onCallback(); });
+
+    capacitativeTouchTask->onSetup();
+    capacitativeTouchTask->setCallback([]() { capacitativeTouchTask->onCallback(); });
+}
+
+/**
+ * This method adds all tasks to the scheduler and enables them.
+ */
+void addTasksToScheduler() {
+    scheduler.addTask(*inputProcessorTask);
+    scheduler.addTask(*messagesCleanerTask);
+    scheduler.addTask(*ledTask);
+    scheduler.addTask(*writeMacroKeyTask);
+    scheduler.addTask(*lowerKnobTask);
+    scheduler.addTask(*upperKnobTask);
+    scheduler.addTask(*hapticTask);
+    scheduler.addTask(*capacitativeTouchTask);
+
+    scheduler.enableAll();
 }
 
 void loop() {

@@ -5,7 +5,10 @@
 #include "InputProcessorTask.h"
 
 InputProcessorTask::InputProcessorTask(LinkedList<RawDataDto *> *messagesToProcess, Stream *serial)
-        : dataToProcess(messagesToProcess), serial(serial) {}
+        : messagesToProcess(messagesToProcess), serial(serial) {
+    this->setInterval(0);
+    this->setIterations(TASK_FOREVER);
+}
 
 void InputProcessorTask::onSetup() {}
 
@@ -25,7 +28,7 @@ void InputProcessorTask::processInputData(char readBuffer[BUFFER_SIZE], size_t d
     // null-terminate the dataBuffer
     dataBuffer[dataSize] = '\0';
 
-    dataToProcess->add(new RawDataDto(dataBuffer, millis()));
+    messagesToProcess->add(new RawDataDto(dataBuffer, millis()));
 
     // clear buffer
     memset(readBuffer, 0, BUFFER_SIZE);

@@ -6,11 +6,11 @@
 #define DIALER_MESSAGESCLEANERTASK_H
 
 #include <LinkedList.h>
-#include "interfaces/IDialTask.h"
 #include "logger/Logger.h"
 #include "inputProcessor/RawDataDto.h"
+#include "interfaces/ISchedulableDialTask.h"
 
-class MessagesCleanerTask : public IDialTask {
+class MessagesCleanerTask : public ISchedulableDialTask {
 public:
     explicit MessagesCleanerTask(LinkedList<RawDataDto *> *messagesToProcess);
 

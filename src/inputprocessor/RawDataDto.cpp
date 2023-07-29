@@ -8,18 +8,18 @@ RawDataDto::RawDataDto(char *rawData, unsigned long millisSinceExistence)
         : rawData(rawData), millisSinceExistence(millisSinceExistence) {}
 
 RawDataDto::~RawDataDto() {
-    delete this->rawData;
-    this->rawData = nullptr;
+    delete rawData;
+    rawData = nullptr;
 }
 
 char *RawDataDto::getRawData() {
-    return this->rawData;
+    return rawData;
 }
 
 bool RawDataDto::isValid() const {
-    return this->itemValid && (millis() - this->millisSinceExistence < LIFE_SPAN);
+    return itemValid && (millis() - millisSinceExistence < LIFE_SPAN);
 }
 
 void RawDataDto::setValid(bool isValid) {
-    this->itemValid = isValid;
+    itemValid = isValid;
 }

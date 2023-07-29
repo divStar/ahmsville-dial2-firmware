@@ -5,7 +5,7 @@
 #ifndef DIALER_WRITEMACROKEYTASK_H
 #define DIALER_WRITEMACROKEYTASK_H
 
-#include "macrokey/MacroKeyDevice.h"
+#include "MacroKey.h"
 #include "interfaces/ISchedulableDialTask.h"
 
 class WriteMacroKeyTask : public ISchedulableDialTask {
@@ -15,6 +15,11 @@ public:
     void onSetup() override;
 
     void onCallback() override;
+
+private:
+    static MacroKey keys[];
+
+    static void initializeKeys();
 };
 
 

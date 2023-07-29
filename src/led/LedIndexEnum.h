@@ -3,7 +3,7 @@
 //
 
 /**
- * <strong>LedIndex</strong> specifies the index of the LED.
+ * <strong>LedIndexEnum</strong> specifies the index of the LED.
  *
  * <em>Note:</em><ul>
  * <li>For <strong><code>BASE_LED#</code></strong> turn your device <strong>upside down</strong> with the USB-C port at the top.
@@ -12,7 +12,7 @@
  * <code>MK_LED1</code> is the LED under the left-most key and the numbering follows the indices from left to right.</li>
  * </ul>
  */
-enum LedIndex {
+enum LedIndexEnum {
     TOP_LED = 0,
     BASE_LED1 = 1,
     BASE_LED2 = 2,

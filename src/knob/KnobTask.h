@@ -21,11 +21,12 @@ public:
 private:
     static const int BUFFER_SIZE = 96;
     constexpr static const float ROTATION_THRESHOLD = 0.004;
-//    constexpr static const float ROTATION_THRESHOLD = 1.0;
 
     const char *name;
 
-    RotaryEncoder *knob;
+    RotaryEncoder knob;
+
+    void sendData();
 };
 
 

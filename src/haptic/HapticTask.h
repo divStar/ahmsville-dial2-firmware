@@ -8,12 +8,12 @@
 #include <FastLED.h>
 #include <LinkedList.h>
 #include "ArduinoJson.h"
-#include "interfaces/IInputConsumer.h"
+#include "interfaces/IConsumer.h"
 #include "inputprocessor/RawDataDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
 
-class HapticTask : public ISchedulableDialTask, private IInputConsumer {
+class HapticTask : public ISchedulableDialTask, private IConsumer {
 public:
     explicit HapticTask(LinkedList<RawDataDto *> *messagesToProcess);
 

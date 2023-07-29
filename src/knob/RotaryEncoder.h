@@ -14,15 +14,13 @@ public:
 
     void readValues();
 
-    float getRotationDelta() const;
+    [[nodiscard]] float getRotationDelta() const;
 
 private:
     static const int SENSOR_MIDPOINT = 500;
 
     int pin0;
     int pin1;
-    int pinInterrupt0;
-    int pinInterrupt1;
 
     float *values = new float[2]{0.0, 0.0};
     float previousRotationAngle = 0;
@@ -33,7 +31,7 @@ private:
 
     float getRotationAngle();
 
-    float getRotationAngleDelta(float currentRotationAngle) const;
+    [[nodiscard]] float getRotationAngleDelta(float currentRotationAngle) const;
 };
 
 #endif //ROTARYENCODER_H

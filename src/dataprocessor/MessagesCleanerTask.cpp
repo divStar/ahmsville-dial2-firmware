@@ -6,8 +6,8 @@
 
 MessagesCleanerTask::MessagesCleanerTask(LinkedList<RawDataDto *> *messagesToProcess)
         : messagesToProcess(messagesToProcess) {
-    this->setInterval(0);
-    this->setIterations(TASK_FOREVER);
+    setInterval(0);
+    setIterations(TASK_FOREVER);
 }
 
 void MessagesCleanerTask::onSetup() {}

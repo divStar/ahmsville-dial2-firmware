@@ -6,8 +6,8 @@
 
 InputProcessorTask::InputProcessorTask(LinkedList<RawDataDto *> *messagesToProcess, Stream *serial)
         : messagesToProcess(messagesToProcess), serial(serial) {
-    this->setInterval(0);
-    this->setIterations(TASK_FOREVER);
+    setInterval(0);
+    setIterations(TASK_FOREVER);
 }
 
 void InputProcessorTask::onSetup() {}
@@ -30,6 +30,9 @@ void InputProcessorTask::processInputData(char readBuffer[BUFFER_SIZE], size_t d
 
     messagesToProcess->add(new RawDataDto(dataBuffer, millis()));
 
-    // clear buffer
+    // delete dataBuffer
+    delete[](dataBuffer);
+
+    // clear readBuffer
     memset(readBuffer, 0, BUFFER_SIZE);
 }

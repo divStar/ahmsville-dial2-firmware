@@ -11,7 +11,7 @@ KnobTask::KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int 
 }
 
 void KnobTask::onSetup() {
-    Log.traceln("Auto-Calibrating %s...", name);
+    Log.traceln("[KNOB] Auto-Calibrating '%s'...", name);
     auto startMillis = millis();
 
     while (millis() - startMillis < 500) {

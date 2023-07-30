@@ -2,15 +2,15 @@
 // Created by Igor Voronin on 26.06.23.
 //
 
-#ifndef DIALER_WRITEMACROKEYTASK_H
-#define DIALER_WRITEMACROKEYTASK_H
+#ifndef DIALER_MACROKEYTASK_H
+#define DIALER_MACROKEYTASK_H
 
 #include "MacroKey.h"
 #include "interfaces/ISchedulableDialTask.h"
 
-class WriteMacroKeyTask : public ISchedulableDialTask {
+class MacroKeyTask : public ISchedulableDialTask {
 public:
-    WriteMacroKeyTask();
+    MacroKeyTask();
 
     void onSetup() override;
 
@@ -23,4 +23,4 @@ private:
 };
 
 
-#endif //DIALER_WRITEMACROKEYTASK_H
+#endif //DIALER_MACROKEYTASK_H

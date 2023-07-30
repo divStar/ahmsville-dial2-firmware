@@ -37,7 +37,7 @@ void LedTask::onCallback() {
                                                          strlen(rawDataDto->getRawData()),
                                                          DeserializationOption::Filter(filterDoc));
             if (error) {
-                Log.errorln("(LED) deserializeJson() failed: %s", error.c_str());
+                Log.errorln("[LED] deserializeJson() failed: %s", error.c_str());
                 return;
             }
 
@@ -52,7 +52,7 @@ void LedTask::applyData(JsonVariantConst jsonData) {
 
     for (JsonObjectConst ledDataJson: ledDataJsonArray) {
         if (isValidData(ledDataJson)) {
-            Log.traceln("Setting leds with (index, r, g, b, brightness) to (%d, %d, %d, %d, %d)",
+            Log.traceln("[LED] Setting leds with (index, r, g, b, brightness) to (%d, %d, %d, %d, %d)",
                         ledDataJson["ledIndex"].as<byte>(),
                         ledDataJson["toColor"][0].as<byte>(),
                         ledDataJson["toColor"][1].as<byte>(),
@@ -79,27 +79,27 @@ bool LedTask::isValidData(JsonVariantConst jsonData) {
                            jsonData["ledIndex"] >= 0 &&
                            jsonData["ledIndex"] <= 12;
     if (!isLedIndexValid) {
-        Log.errorln("LedIndexEnum is invalid: %d", jsonData["ledIndex"].as<LedIndexEnum>());
+        Log.errorln("[LED] LedIndexEnum is invalid: %d", jsonData["ledIndex"].as<LedIndexEnum>());
     }
 
     bool isToColorRValid = jsonData["toColor"][0].is<byte>();
     if (!isToColorRValid) {
-        Log.errorln("toColor[R] is invalid: %d", jsonData["toColor"][0].as<LedIndexEnum>());
+        Log.errorln("[LED] toColor[R] is invalid: %d", jsonData["toColor"][0].as<LedIndexEnum>());
     }
 
     bool isToColorGValid = jsonData["toColor"][1].is<byte>();
     if (!isToColorGValid) {
-        Log.errorln("toColor[G] is invalid: %d", jsonData["toColor"][1].as<LedIndexEnum>());
+        Log.errorln("[LED] toColor[G] is invalid: %d", jsonData["toColor"][1].as<LedIndexEnum>());
     }
 
     bool isToColorBValid = jsonData["toColor"][2].is<byte>();
     if (!isToColorBValid) {
-        Log.errorln("toColor[B] is invalid: %d", jsonData["toColor"][2].as<LedIndexEnum>());
+        Log.errorln("[LED] toColor[B] is invalid: %d", jsonData["toColor"][2].as<LedIndexEnum>());
     }
 
     bool isBrightnessValid = jsonData["misc"]["brightness"].is<byte>();
     if (!isBrightnessValid) {
-        Log.errorln("brightness is invalid: %d", jsonData["misc"]["brightness"].as<LedIndexEnum>());
+        Log.errorln("[LED] brightness is invalid: %d", jsonData["misc"]["brightness"].as<LedIndexEnum>());
     }
 
     return isLedIndexValid && isToColorRValid && isToColorGValid && isToColorBValid && isBrightnessValid;

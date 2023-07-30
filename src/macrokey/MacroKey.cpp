@@ -11,21 +11,26 @@ int MacroKey::getPin() const {
 }
 
 void MacroKey::onChangeState() {
-    StaticJsonDocument<BUFFER_SIZE> jsonDoc;
-    jsonDoc["type"] = "macrokey";
-    jsonDoc["keyId"] = keyId;
-    jsonDoc["pin"] = pin;
+    unsigned long interruptTime = millis();
+    if (interruptTime - lastInterrupttime > DEBOUNCE_DELAY) {
+        StaticJsonDocument<BUFFER_SIZE> jsonDoc;
+        jsonDoc["type"] = "macrokey";
+        jsonDoc["keyId"] = keyId;
+        jsonDoc["pin"] = pin;
 
-    if (riseTime <= fallTime) {
-        riseTime = millis();
-        jsonDoc["event"] = "pressed";
-        jsonDoc["riseTime"] = riseTime;
-    } else if (riseTime > fallTime) {
-        fallTime = millis();
-        jsonDoc["type"] = "released";
-        jsonDoc["fallTime"] = fallTime;
+        if (riseTime <= fallTime) {
+            riseTime = millis();
+            jsonDoc["event"] = "pressed";
+            jsonDoc["riseTime"] = riseTime;
+            jsonDoc["_fT"] = fallTime;
+        } else if (riseTime > fallTime) {
+            fallTime = millis();
+            jsonDoc["event"] = "released";
+            jsonDoc["fallTime"] = fallTime;
+            jsonDoc["_rT"] = riseTime;
+        }
+
+        serializeJson(jsonDoc, SerialUSB);
+        SerialUSB.println();
     }
-
-    serializeJson(jsonDoc, SerialUSB);
-    SerialUSB.println();
 }

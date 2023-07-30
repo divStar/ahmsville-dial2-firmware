@@ -24,7 +24,7 @@ void HapticTask::onCallback() {
                                                          strlen(rawDataDto->getRawData()),
                                                          DeserializationOption::Filter(filterDoc));
             if (error) {
-                Log.errorln("(Haptic) deserializeJson() failed: %s", error.c_str());
+                Log.errorln("[HAPTIC] deserializeJson() failed: %s", error.c_str());
                 return;
             }
 
@@ -36,7 +36,7 @@ void HapticTask::onCallback() {
 
 void HapticTask::applyData(JsonVariantConst jsonData) {
     if (isValidData(jsonData)) {
-        Log.traceln("Setting haptic with strength %d", jsonData["strength"].as<byte>());
+        Log.traceln("[HAPTIC] Setting haptic with strength %d", jsonData["strength"].as<byte>());
 
         analogWrite(HAPTIC_PIN, jsonData["strength"].as<byte>());
     }

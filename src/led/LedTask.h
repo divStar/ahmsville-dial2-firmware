@@ -13,6 +13,7 @@
 #include "inputprocessor/RawDataDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "error/ErrorSerializer.h"
 
 class LedTask : public ISchedulableDialTask, private IConsumer {
 public:
@@ -31,6 +32,8 @@ private:
     void applyData(JsonVariantConst jsonData) override;
 
     bool isValidData(JsonVariantConst jsonData) override;
+
+    void sendValidationError(const char* errorNumber, const char* message, byte data);
 };
 
 #endif //DIALER_LEDTASK_H

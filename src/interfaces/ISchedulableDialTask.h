@@ -6,8 +6,11 @@
 #define DIALER_ISCHEDULABLEDIALTASK_H
 
 #include <TaskSchedulerDeclarations.h>
-#include "IDialTask.h"
+#include "DialTask.h"
 
-class ISchedulableDialTask: public Task, public virtual IDialTask {};
+class ISchedulableDialTask : public Task, public DialTask {
+public:
+    explicit ISchedulableDialTask(const char* taskType) : DialTask(taskType) {};
+};
 
 #endif //DIALER_ISCHEDULABLEDIALTASK_H

@@ -4,8 +4,7 @@
 
 #include "SpaceNavigatorTask.h"
 
-SpaceNavigatorTask::SpaceNavigatorTask(MPU6050 *mpu)
-: mpu(mpu) {}
+SpaceNavigatorTask::SpaceNavigatorTask(MPU6050 *mpu) : ISchedulableDialTask("spacenavigator"), mpu(mpu) {}
 
 void SpaceNavigatorTask::onSetup() {
     // supply your own gyro offsets here, scaled for min sensitivity
@@ -17,6 +16,8 @@ void SpaceNavigatorTask::onSetup() {
     if (mpu->testConnection()) {
         Log.traceln("[MPU6050] connection probe successfully");
     } else {
+        ErrorSerializer::serializeError(getTaskType(), "SN1", "[MPU6050] connection probe has failed");
+
         Log.errorln("[MPU6050] connection probe has failed");
     }
 }

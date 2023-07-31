@@ -12,7 +12,7 @@
 CRGB leds[NUM_LEDS];
 
 LedTask::LedTask(LinkedList<RawDataDto *> *messagesToProcess)
-        : messagesToProcess(messagesToProcess) {
+        : ISchedulableDialTask("led"), messagesToProcess(messagesToProcess) {
     setInterval(0);
     setIterations(TASK_FOREVER);
     filterDoc[0]["type"] = true;
@@ -30,14 +30,20 @@ void LedTask::onSetup() {
 void LedTask::onCallback() {
     for (int rawDataDtoIndex = messagesToProcess->size() - 1; rawDataDtoIndex >= 0; --rawDataDtoIndex) {
         RawDataDto *rawDataDto = messagesToProcess->get(rawDataDtoIndex);
+        char taskType[30];
+        sprintf(taskType, R"("type":"%s")", getTaskType());
 
-        if (strstr(rawDataDto->getRawData(), R"("type":"led")") != nullptr) {
+        if (strstr(rawDataDto->getRawData(), taskType) != nullptr) {
             StaticJsonDocument<BUFFER_SIZE> jsonDoc;
             DeserializationError error = deserializeJson(jsonDoc, rawDataDto->getRawData(),
                                                          strlen(rawDataDto->getRawData()),
                                                          DeserializationOption::Filter(filterDoc));
             if (error) {
-                Log.errorln("[LED] deserializeJson() failed: %s", error.c_str());
+                char errorMessage[150];
+                sprintf(errorMessage, "[LED] deserializeJson() failed: %s", error.c_str());
+                ErrorSerializer::serializeError(getTaskType(), "L1", errorMessage);
+
+                Log.errorln(errorMessage);
                 return;
             }
 
@@ -74,33 +80,41 @@ void LedTask::applyData(JsonVariantConst jsonData) {
 }
 
 bool LedTask::isValidData(JsonVariantConst jsonData) {
-    bool isLedIndexValid = jsonData["type"] == "led" &&
+    bool isLedIndexValid = jsonData["type"] == getTaskType() &&
                            jsonData["ledIndex"].is<LedIndexEnum>() &&
                            jsonData["ledIndex"] >= 0 &&
                            jsonData["ledIndex"] <= 12;
     if (!isLedIndexValid) {
-        Log.errorln("[LED] LedIndexEnum is invalid: %d", jsonData["ledIndex"].as<LedIndexEnum>());
+        sendValidationError("L2", "[LED] LedIndexEnum is invalid: %d", jsonData["ledIndex"].as<byte>());
     }
 
     bool isToColorRValid = jsonData["toColor"][0].is<byte>();
     if (!isToColorRValid) {
-        Log.errorln("[LED] toColor[R] is invalid: %d", jsonData["toColor"][0].as<LedIndexEnum>());
+        sendValidationError("L3", "[LED] toColor[R] is invalid: %d", jsonData["toColor"][0].as<byte>());
     }
 
     bool isToColorGValid = jsonData["toColor"][1].is<byte>();
     if (!isToColorGValid) {
-        Log.errorln("[LED] toColor[G] is invalid: %d", jsonData["toColor"][1].as<LedIndexEnum>());
+        sendValidationError("L4", "[LED] toColor[G] is invalid: %d", jsonData["toColor"][1].as<byte>());
     }
 
     bool isToColorBValid = jsonData["toColor"][2].is<byte>();
     if (!isToColorBValid) {
-        Log.errorln("[LED] toColor[B] is invalid: %d", jsonData["toColor"][2].as<LedIndexEnum>());
+        sendValidationError("L5", "[LED] toColor[B] is invalid: %d", jsonData["toColor"][1].as<byte>());
     }
 
     bool isBrightnessValid = jsonData["misc"]["brightness"].is<byte>();
     if (!isBrightnessValid) {
-        Log.errorln("[LED] brightness is invalid: %d", jsonData["misc"]["brightness"].as<LedIndexEnum>());
+        sendValidationError("L6", "[LED] brightness is invalid: %d", jsonData["misc"]["brightness"].as<byte>());
     }
 
     return isLedIndexValid && isToColorRValid && isToColorGValid && isToColorBValid && isBrightnessValid;
+}
+
+void LedTask::sendValidationError(const char *errorNumber, const char *message, byte data) {
+    char validationErrorMessage[50];
+    sprintf(validationErrorMessage, message, data);
+    ErrorSerializer::serializeError(getTaskType(), errorNumber, validationErrorMessage);
+
+    Log.errorln(validationErrorMessage);
 }

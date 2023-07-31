@@ -5,7 +5,7 @@
 #include "KnobTask.h"
 
 KnobTask::KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
-        : name(name), knob(RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {
+        : ISchedulableDialTask("knob"), name(name), knob(RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
@@ -25,7 +25,7 @@ void KnobTask::onCallback() {
     knob.readValues();
 
     if (knob.getRotationDelta() > ROTATION_THRESHOLD
-         || knob.getRotationDelta() < -ROTATION_THRESHOLD) {
+        || knob.getRotationDelta() < -ROTATION_THRESHOLD) {
         sendData();
     }
 }
@@ -33,7 +33,7 @@ void KnobTask::onCallback() {
 void KnobTask::sendData() {
     // Create and output serialized JSON
     StaticJsonDocument<BUFFER_SIZE> jsonDoc;
-    jsonDoc["type"] = "knob";
+    jsonDoc["type"] = getTaskType();
     jsonDoc["name"] = name;
     jsonDoc["time"] = millis();
     jsonDoc["rotationDelta"] = knob.getRotationDelta();

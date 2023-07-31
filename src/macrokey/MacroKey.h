@@ -1,5 +1,6 @@
 #ifndef MACROKEY_H
 #define MACROKEY_H
+
 #include <Arduino.h>
 
 class MacroKey {
@@ -10,16 +11,19 @@ public:
 
     void onChangeState();
 
+    void setType(const char *type);
+
 private:
     static const int BUFFER_SIZE = 256;
     static const unsigned long DEBOUNCE_DELAY = 100;
-    static const unsigned long LONG_PRESS_TIME = 250;
 
     int keyId;
     int pin;
     volatile unsigned long riseTime;
     volatile unsigned long fallTime;
     volatile unsigned long lastInterrupttime;
+
+    const char *type;
 };
 
 #endif

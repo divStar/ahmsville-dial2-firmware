@@ -9,6 +9,7 @@
 #include <MPU6050.h>
 #include "interfaces/ISchedulableDialTask.h"
 #include "logger/Logger.h"
+#include "error/ErrorSerializer.h"
 
 class SpaceNavigatorTask : public ISchedulableDialTask {
 public:

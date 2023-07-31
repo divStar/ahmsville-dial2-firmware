@@ -10,9 +10,15 @@ MacroKey MacroKeyTask::keys[5] = {MacroKey(0, 0),
                                   MacroKey(4, 12)
 };
 
-MacroKeyTask::MacroKeyTask() {
+MacroKeyTask::MacroKeyTask() : ISchedulableDialTask("macrokey") {
     setInterval(0);
     setIterations(TASK_FOREVER);
+
+    // set the correct type, that will be displayed in the JSON each key will be sending
+    // since `MacroKey::type` is initialized to `macrokey`, this is technically not necessary
+    for (auto key : keys) {
+        key.setType(getTaskType());
+    }
 }
 
 void MacroKeyTask::onSetup() {

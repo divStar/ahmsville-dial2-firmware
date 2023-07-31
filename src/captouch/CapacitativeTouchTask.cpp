@@ -5,7 +5,7 @@
 #include "CapacitativeTouchTask.h"
 
 CapacitativeTouchTask::CapacitativeTouchTask(byte sendingPin, byte receivingPin)
-        : sensor(CapacitiveSensor(sendingPin, receivingPin)) {
+        : ISchedulableDialTask("captouch"), sensor(CapacitiveSensor(sendingPin, receivingPin)) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
@@ -25,7 +25,7 @@ void CapacitativeTouchTask::onCallback() {
 
 void CapacitativeTouchTask::sendData(long sensorValue) {
     StaticJsonDocument<BUFFER_SIZE> jsonDoc;
-    jsonDoc["type"] = "captouch";
+    jsonDoc["type"] = getTaskType();
     jsonDoc["value"] = sensorValue;
     jsonDoc["time"] = millis();
 

@@ -1,10 +1,8 @@
 #include "ArduinoJson.h"
 #include "MacroKey.h"
 
-MacroKey::MacroKey(int keyId, int pin) : keyId(keyId), pin(pin) {
-    riseTime = 0;
-    fallTime = 0;
-}
+MacroKey::MacroKey(int keyId, int pin)
+        : keyId(keyId), pin(pin), riseTime(0), fallTime(0), lastInterrupttime(0), type("macrokey") {}
 
 int MacroKey::getPin() const {
     return pin;
@@ -14,7 +12,7 @@ void MacroKey::onChangeState() {
     unsigned long interruptTime = millis();
     if (interruptTime - lastInterrupttime > DEBOUNCE_DELAY) {
         StaticJsonDocument<BUFFER_SIZE> jsonDoc;
-        jsonDoc["type"] = "macrokey";
+        jsonDoc["type"] = type;
         jsonDoc["keyId"] = keyId;
         jsonDoc["pin"] = pin;
 
@@ -33,4 +31,8 @@ void MacroKey::onChangeState() {
         serializeJson(jsonDoc, SerialUSB);
         SerialUSB.println();
     }
+}
+
+void MacroKey::setType(const char *newType) {
+    this->type = newType;
 }

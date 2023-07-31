@@ -26,7 +26,7 @@ private:
 
     CapacitiveSensor sensor;
 
-    static void sendData(long sensorValue);
+    void sendData(long sensorValue);
 };
 
 

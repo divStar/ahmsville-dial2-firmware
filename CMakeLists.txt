@@ -30,4 +30,4 @@ add_custom_target(
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/spacenavigator/MPU6050_6Axis_MA20.h)
+add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/error/ErrorSerializer.h src/interfaces/DialTask.cpp)

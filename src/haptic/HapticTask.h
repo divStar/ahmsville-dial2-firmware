@@ -12,6 +12,7 @@
 #include "inputprocessor/RawDataDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "error/ErrorSerializer.h"
 
 class HapticTask : public ISchedulableDialTask, private IConsumer {
 public:

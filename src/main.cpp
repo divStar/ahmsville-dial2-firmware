@@ -40,7 +40,7 @@ void setupMPU6050() {
  */
 void createTasks() {
     inputProcessorTask = new InputProcessorTask(&messagesToProcess, &SerialUSB);
-    messagesCleanerTask = new MessagesCleanerTask(&messagesToProcess);
+    messagesCleanerTask = new MessagesCleanerTask(nullptr, &messagesToProcess);
     ledTask = new LedTask(&messagesToProcess);
     writeMacroKeyTask = new MacroKeyTask();
     upperKnobTask = new KnobTask("UpperKnob", A1, A0, 38, 27);

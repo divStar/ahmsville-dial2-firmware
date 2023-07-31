@@ -12,7 +12,7 @@
 
 class MessagesCleanerTask : public ISchedulableDialTask {
 public:
-    explicit MessagesCleanerTask(LinkedList<RawDataDto *> *messagesToProcess);
+    explicit MessagesCleanerTask(const char *type, LinkedList<RawDataDto *> *messagesToProcess);
 
     void onSetup() override;
 

@@ -5,7 +5,7 @@
 #include "InputProcessorTask.h"
 
 InputProcessorTask::InputProcessorTask(LinkedList<RawDataDto *> *messagesToProcess, Stream *serial)
-        : messagesToProcess(messagesToProcess), serial(serial) {
+        : ISchedulableDialTask("inputprocessor"), messagesToProcess(messagesToProcess), serial(serial) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }

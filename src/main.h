@@ -5,7 +5,6 @@
 #ifndef DIALER_MAIN_H
 #define DIALER_MAIN_H
 
-#include <MPU6050_6Axis_MotionApps20.h>
 #include <Arduino.h>
 #include <TaskScheduler.h>
 #include <LinkedList.h>
@@ -22,10 +21,6 @@
 #define NUM_LEDS            13
 #define SERIAL_USB_TIMEOUT  200
 
-static const int INTERRUPT_PIN = 2;
-
-MPU6050 mpu(MPU6050_IMU::MPU6050_ADDRESS_AD0_HIGH);
-
 Scheduler scheduler;
 
 LinkedList<RawDataDto *> messagesToProcess;
@@ -39,14 +34,6 @@ KnobTask *lowerKnobTask;
 HapticTask *hapticTask;
 CapacitativeTouchTask *capacitativeTouchTask;
 SpaceNavigatorTask *spaceNavigatorTask;
-
-void dmpDataReady();
-
-void setup();
-
-void loop();
-
-void setupMPU6050();
 
 void createTasks();
 

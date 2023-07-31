@@ -6,21 +6,28 @@
 #define DIALER_SPACENAVIGATORTASK_H
 
 #include <Arduino.h>
-#include <MPU6050.h>
+#include "../../lib/mpu6050-custom/helper_3dmath.h"
+#include "../../lib/mpu6050-custom/MPU6050.h"
 #include "interfaces/ISchedulableDialTask.h"
 #include "logger/Logger.h"
 #include "error/ErrorSerializer.h"
 
 class SpaceNavigatorTask : public ISchedulableDialTask {
 public:
-    explicit SpaceNavigatorTask(MPU6050 *mpu);
+    explicit SpaceNavigatorTask();
 
     void onSetup() override;
 
     void onCallback() override;
 
 private:
-    MPU6050 *mpu;
+    static const auto STARTER_PIN = 30;
+    static const auto INTERRUPT_PIN = 2;
+
+    unsigned int dmpInitDone = 100;
+    MPU6050 mpu;
+
+    static void dmpDataReady();
 };
 
 

@@ -30,4 +30,4 @@ add_custom_target(
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/error/ErrorSerializer.h src/interfaces/DialTask.cpp)
+add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/error/ErrorSerializer.h src/interfaces/DialTask.cpp lib/mpu6050-custom/MPU6050.cpp lib/mpu6050-custom/helper_3dmath.h)

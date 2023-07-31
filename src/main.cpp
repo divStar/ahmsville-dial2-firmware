@@ -7,8 +7,6 @@ void setup() {
 
     setupLogger();
 
-    setupMPU6050();
-
     createTasks();
     setupTasks();
     addTasksToScheduler();
@@ -18,21 +16,6 @@ void setup() {
 
 void loop() {
     scheduler.execute();
-}
-
-void setupMPU6050() {
-    Log.traceln("[MPU6050] Establishing connection...");
-    pinMode(30, OUTPUT);
-    digitalWrite(30, LOW);
-    delay(250);
-
-    Wire.begin();
-    Wire.setClock(400000);
-    mpu.initialize();
-    mpu.dmpInitialize();
-    pinMode(INTERRUPT_PIN, INPUT);
-    attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
-    Log.traceln("[MPU6050] connection established");
 }
 
 /**
@@ -47,7 +30,7 @@ void createTasks() {
     lowerKnobTask = new KnobTask("LowerKnob", A2, A3, 42, 13);
     hapticTask = new HapticTask(&messagesToProcess);
     capacitativeTouchTask = new CapacitativeTouchTask(9, 8);
-    spaceNavigatorTask = new SpaceNavigatorTask(&mpu);
+    spaceNavigatorTask = new SpaceNavigatorTask();
 }
 
 /**
@@ -97,8 +80,6 @@ void addTasksToScheduler() {
     scheduler.addTask(*spaceNavigatorTask);
 
     scheduler.enableAll();
-}
-
-void dmpDataReady() {
-    SerialUSB.println("MPU6050 Data is ready!");
+    capacitativeTouchTask->disable();
+    upperKnobTask->disable();
 }

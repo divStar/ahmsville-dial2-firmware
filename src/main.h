@@ -1,6 +1,12 @@
-//
-// Created by Igor Voronin on 30.07.23.
-//
+/**
+ * @file    main.h
+ * @brief   Main program of the device.
+ *
+ * This class is the main program class for the AhmsVille Dial2.
+ *
+ * @author  Igor Voronin
+ * @date    30.07.2023
+ */
 
 #ifndef DIALER_MAIN_H
 #define DIALER_MAIN_H
@@ -18,12 +24,17 @@
 #include "captouch/CapacitativeTouchTask.h"
 #include "spacenavigator/SpaceNavigatorTask.h"
 
-#define NUM_LEDS            13
 #define SERIAL_USB_TIMEOUT  200
 
+/**
+ * @brief TaskScheduler to use in order to distribute the available CPU cycles properly.
+ */
 Scheduler scheduler;
 
-LinkedList<RawDataDto *> messagesToProcess;
+/**
+ * @brief Pointer to the list of messages to be processed.
+ */
+LinkedList<InputMessageDto *> messagesToProcess;
 
 InputProcessorTask *inputProcessorTask;
 MessagesCleanerTask *messagesCleanerTask;
@@ -35,10 +46,19 @@ HapticTask *hapticTask;
 CapacitativeTouchTask *capacitativeTouchTask;
 SpaceNavigatorTask *spaceNavigatorTask;
 
+/**
+ * @brief Creates instances of all ISchedulableDialTask objects.
+ */
 void createTasks();
 
+/**
+ * @brief Sets up instances of all ISchedulableDialTask objects.
+ */
 void setupTasks();
 
+/**
+ * @brief Adds all ISchedulableDialTask objects to the Scheduler and enables them.
+ */
 void addTasksToScheduler();
 
 #endif //DIALER_MAIN_H

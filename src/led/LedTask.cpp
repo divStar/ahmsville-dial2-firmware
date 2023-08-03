@@ -1,17 +1,13 @@
-//
-// Created by Igor Voronin on 17.06.23.
-//
 #include "LedTask.h"
 
-#define LED_TYPE    WS2812B
-#define DATA_PIN    3
-#define COLOR_ORDER GRB
-#define NUM_LEDS    13
-#define BRIGHTNESS  96
-
+/**
+ * @brief Array of LEDs, initialized with the amount of LEDs.
+ *
+ * This variables needs to stay here since in the header file it'd be imported multiple times.
+ */
 CRGB leds[NUM_LEDS];
 
-LedTask::LedTask(LinkedList<RawDataDto *> *messagesToProcess)
+LedTask::LedTask(LinkedList<InputMessageDto *> *messagesToProcess)
         : ISchedulableDialTask("led"), messagesToProcess(messagesToProcess) {
     setInterval(0);
     setIterations(TASK_FOREVER);
@@ -29,31 +25,31 @@ void LedTask::onSetup() {
 
 void LedTask::onCallback() {
     for (int rawDataDtoIndex = messagesToProcess->size() - 1; rawDataDtoIndex >= 0; --rawDataDtoIndex) {
-        RawDataDto *rawDataDto = messagesToProcess->get(rawDataDtoIndex);
+        InputMessageDto *rawDataDto = messagesToProcess->get(rawDataDtoIndex);
         char taskType[30];
         sprintf(taskType, R"("type":"%s")", getTaskType());
 
-        if (strstr(rawDataDto->getRawData(), taskType) != nullptr) {
+        if (strstr(rawDataDto->getRawInputData(), taskType) != nullptr) {
             StaticJsonDocument<BUFFER_SIZE> jsonDoc;
-            DeserializationError error = deserializeJson(jsonDoc, rawDataDto->getRawData(),
-                                                         strlen(rawDataDto->getRawData()),
+            DeserializationError error = deserializeJson(jsonDoc, rawDataDto->getRawInputData(),
+                                                         strlen(rawDataDto->getRawInputData()),
                                                          DeserializationOption::Filter(filterDoc));
             if (error) {
                 char errorMessage[150];
                 sprintf(errorMessage, "[LED] deserializeJson() failed: %s", error.c_str());
-                ErrorSerializer::serializeError(getTaskType(), "L1", errorMessage);
+                ErrorSerializer::serializeToJsonAndSend(getTaskType(), "L1", errorMessage);
 
                 Log.errorln(errorMessage);
                 return;
             }
 
-            LedTask::applyData(jsonDoc.as<JsonVariantConst>());
+            LedTask::useData(jsonDoc.as<JsonVariantConst>());
             messagesToProcess->get(rawDataDtoIndex)->setValid(false);
         }
     }
 }
 
-void LedTask::applyData(JsonVariantConst jsonData) {
+void LedTask::useData(JsonVariantConst jsonData) {
     JsonArrayConst ledDataJsonArray = jsonData.as<JsonArrayConst>();
 
     for (JsonObjectConst ledDataJson: ledDataJsonArray) {
@@ -111,10 +107,10 @@ bool LedTask::isValidData(JsonVariantConst jsonData) {
     return isLedIndexValid && isToColorRValid && isToColorGValid && isToColorBValid && isBrightnessValid;
 }
 
-void LedTask::sendValidationError(const char *errorNumber, const char *message, byte data) {
+void LedTask::sendValidationError(const char *error, const char *message, byte data) {
     char validationErrorMessage[50];
     sprintf(validationErrorMessage, message, data);
-    ErrorSerializer::serializeError(getTaskType(), errorNumber, validationErrorMessage);
+    ErrorSerializer::serializeToJsonAndSend(getTaskType(), error, validationErrorMessage);
 
     Log.errorln(validationErrorMessage);
 }

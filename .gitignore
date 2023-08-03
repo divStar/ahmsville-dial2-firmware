@@ -1,5 +1,40 @@
-.pio
-CMakeListsPrivate.txt
-cmake-build-*/
-~*.*
+# Ignore MacOS generated directory
 /**/.DS_Store
+
+# Ignore PlatformIO build directory
+.pio
+
+# Ignore CLion artifacts
+.idea
+cmake-build-*
+CMakeListsPrivate.txt
+
+# Ignore Doxygen output directory
+docs
+
+# Ignore compiled and linked binaries
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.out
+
+# Ignore backup files created by text editors
+*~
+*.bak
+*.swp
+*.swo
+
+# Ignore macOS system files
+.DS_Store
+._*
+
+# Ignore other common temp or cache files
+*.log
+*.tmp
+*.pid
+*.pyc
+*.lo
+*.la
+*-stamp

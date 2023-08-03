@@ -1,16 +1,10 @@
-//
-// Created by Igor Voronin on 25.07.23.
-//
-
 #include "InputProcessorTask.h"
 
-InputProcessorTask::InputProcessorTask(LinkedList<RawDataDto *> *messagesToProcess, Stream *serial)
+InputProcessorTask::InputProcessorTask(LinkedList<InputMessageDto *> *messagesToProcess, Stream *serial)
         : ISchedulableDialTask("inputprocessor"), messagesToProcess(messagesToProcess), serial(serial) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
-
-void InputProcessorTask::onSetup() {}
 
 void InputProcessorTask::onCallback() {
     if (serial->available()) {
@@ -28,7 +22,7 @@ void InputProcessorTask::processInputData(char readBuffer[BUFFER_SIZE], size_t d
     // null-terminate the dataBuffer
     dataBuffer[dataSize] = '\0';
 
-    messagesToProcess->add(new RawDataDto(dataBuffer, millis()));
+    messagesToProcess->add(new InputMessageDto(dataBuffer, millis()));
 
     // delete dataBuffer
     delete[](dataBuffer);

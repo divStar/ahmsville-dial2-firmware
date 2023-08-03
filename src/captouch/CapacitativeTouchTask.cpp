@@ -1,7 +1,3 @@
-//
-// Created by Igor Voronin on 29.07.23.
-//
-
 #include "CapacitativeTouchTask.h"
 
 CapacitativeTouchTask::CapacitativeTouchTask(byte sendingPin, byte receivingPin)

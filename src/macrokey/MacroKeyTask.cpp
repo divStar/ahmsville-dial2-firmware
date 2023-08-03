@@ -1,6 +1,3 @@
-//
-// Created by Igor Voronin on 26.06.23.
-//
 #include "MacroKeyTask.h"
 
 MacroKey MacroKeyTask::keys[5] = {MacroKey(0, 0),
@@ -23,10 +20,6 @@ MacroKeyTask::MacroKeyTask() : ISchedulableDialTask("macrokey") {
 
 void MacroKeyTask::onSetup() {
     MacroKeyTask::initializeKeys();
-}
-
-void MacroKeyTask::onCallback() {
-    // nothing to do during the loop since data is sent during interrupt
 }
 
 void MacroKeyTask::initializeKeys() {

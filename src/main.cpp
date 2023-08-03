@@ -29,7 +29,7 @@ void createTasks() {
     upperKnobTask = new KnobTask("UpperKnob", A1, A0, 38, 27);
     lowerKnobTask = new KnobTask("LowerKnob", A2, A3, 42, 13);
     hapticTask = new HapticTask(&messagesToProcess);
-    capacitativeTouchTask = new CapacitativeTouchTask(9, 8);
+    capacitativeTouchTask = new CapacitativeTouchTask(PIN_WIRE_SCL, PIN_WIRE_SDA);
     spaceNavigatorTask = new SpaceNavigatorTask();
 }
 
@@ -80,6 +80,6 @@ void addTasksToScheduler() {
     scheduler.addTask(*spaceNavigatorTask);
 
     scheduler.enableAll();
-    capacitativeTouchTask->disable();
-    upperKnobTask->disable();
+//    capacitativeTouchTask->disable();
+//    upperKnobTask->disable();
 }

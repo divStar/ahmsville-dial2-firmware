@@ -1,6 +1,3 @@
-//
-// Created by Igor Voronin on 29.07.23.
-//
 #include "SpaceNavigatorTask.h"
 
 SpaceNavigatorTask::SpaceNavigatorTask()
@@ -30,7 +27,7 @@ void SpaceNavigatorTask::onSetup() {
     if (mpu.testConnection()) {
         Log.traceln("[MPU6050] connection probe successfully");
     } else {
-        ErrorSerializer::serializeError(getTaskType(), "SN1", "[MPU6050] connection probe has failed");
+        ErrorSerializer::serializeToJsonAndSend(getTaskType(), "SN1", "[MPU6050] connection probe has failed");
 
         Log.errorln("[MPU6050] connection probe has failed");
     }

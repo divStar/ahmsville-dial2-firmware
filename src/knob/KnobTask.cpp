@@ -1,7 +1,3 @@
-//
-// Created by Igor Voronin on 06.07.23.
-//
-
 #include "KnobTask.h"
 
 KnobTask::KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
@@ -23,9 +19,9 @@ void KnobTask::onSetup() {
 
 void KnobTask::onCallback() {
     knob.readValues();
+    auto rotationAngleDelta = knob.getRotationAngleDelta();
 
-    if (knob.getRotationDelta() > ROTATION_THRESHOLD
-        || knob.getRotationDelta() < -ROTATION_THRESHOLD) {
+    if (rotationAngleDelta > ROTATION_THRESHOLD || rotationAngleDelta < -ROTATION_THRESHOLD) {
         sendData();
     }
 }
@@ -36,7 +32,7 @@ void KnobTask::sendData() {
     jsonDoc["type"] = getTaskType();
     jsonDoc["name"] = name;
     jsonDoc["time"] = millis();
-    jsonDoc["rotationDelta"] = knob.getRotationDelta();
+    jsonDoc["rotationDelta"] = knob.getRotationAngleDelta();
 
     serializeJson(jsonDoc, SerialUSB);
     SerialUSB.println();

@@ -5,6 +5,7 @@
 #include <ArduinoJson.h>
 #include "RotaryEncoder.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "interfaces/ISerialPortUser.h"
 
 /**
  * @class   KnobTask
@@ -17,7 +18,7 @@
  * @author  Igor Voronin
  * @date    06.07.2023
  */
-class KnobTask : public ISchedulableDialTask {
+class KnobTask : public ISchedulableDialTask, public ISerialPortUser {
 public:
     /**
      * @brief Constructor.
@@ -56,7 +57,7 @@ private:
     RotaryEncoder knob;
 
     /**
-     * @brief Command to handle sending retrieved sensor values to the Serial port.
+     * @brief Handles sending the retrieved sensor values to the Serial port.
      */
     void sendData();
 };

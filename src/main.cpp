@@ -2,8 +2,8 @@
 
 void setup() {
     delay(5000);
-    SerialUSB.begin(115200);
-    SerialUSB.setTimeout(SERIAL_USB_TIMEOUT);
+    configuredSerialPort().begin(115200);
+    configuredSerialPort().setTimeout(SERIAL_USB_TIMEOUT);
 
     setupLogger();
 
@@ -22,14 +22,14 @@ void loop() {
  * This method creates all scheduled tasks, that run within this program.
  */
 void createTasks() {
-    inputProcessorTask = new InputProcessorTask(&messagesToProcess, &SerialUSB);
-    messagesCleanerTask = new MessagesCleanerTask(nullptr, &messagesToProcess);
-    ledTask = new LedTask(&messagesToProcess);
+    inputProcessorTask = new InputProcessorTask(messagesToProcess);
+    messagesCleanerTask = new MessagesCleanerTask(messagesToProcess);
+    ledTask = new LedTask(messagesToProcess);
     writeMacroKeyTask = new MacroKeyTask();
     upperKnobTask = new KnobTask("UpperKnob", A1, A0, 38, 27);
     lowerKnobTask = new KnobTask("LowerKnob", A2, A3, 42, 13);
-    hapticTask = new HapticTask(&messagesToProcess);
-    capacitativeTouchTask = new CapacitativeTouchTask(PIN_WIRE_SCL, PIN_WIRE_SDA);
+    hapticTask = new HapticTask(messagesToProcess);
+    capacitativeTouchTask = new CapacitativeTouchTask(9, 8);
     spaceNavigatorTask = new SpaceNavigatorTask();
 }
 
@@ -80,6 +80,7 @@ void addTasksToScheduler() {
     scheduler.addTask(*spaceNavigatorTask);
 
     scheduler.enableAll();
-//    capacitativeTouchTask->disable();
-//    upperKnobTask->disable();
+
+    capacitativeTouchTask->disable();
+    upperKnobTask->disable();
 }

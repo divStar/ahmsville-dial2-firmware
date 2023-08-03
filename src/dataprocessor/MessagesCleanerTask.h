@@ -5,6 +5,7 @@
 #include "logger/Logger.h"
 #include "inputProcessor/InputMessageDto.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "interfaces/IMessageConsumer.h"
 
 /**
  * @class   MessagesCleanerTask
@@ -17,23 +18,21 @@
  * @author  Igor Voronin
  * @date    28.07.2023
  */
-class MessagesCleanerTask : public ISchedulableDialTask {
+class MessagesCleanerTask : public ISchedulableDialTask, private IMessageConsumer {
 public:
     /**
      * @brief Constructor.
      *
-     * @param type              (const char*) short type name of the task
-     * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list containing the messages to be processed
+     * @param messagesToProcess (LinkedList<InputMessageDto *>*) reference to the list containing the messages to be processed
      */
-    explicit MessagesCleanerTask(const char *type, LinkedList<InputMessageDto *> *messagesToProcess);
+    explicit MessagesCleanerTask(LinkedList<InputMessageDto *> &messagesToProcess);
 
     void onCallback() override;
 
 private:
-    /**
-     * @brief Pointer to the list of messages to be processed.
-     */
-    LinkedList<InputMessageDto *> *messagesToProcess;
+    void useData(JsonVariantConst jsonData) override { /* data is not used, but only processed */ };
+
+    bool isValidData(JsonVariantConst jsonData) override { /* there is no data to validate */ return false; };
 };
 
 

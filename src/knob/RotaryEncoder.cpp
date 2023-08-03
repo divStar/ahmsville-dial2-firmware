@@ -1,4 +1,5 @@
 #include "RotaryEncoder.h"
+
 RotaryEncoder::RotaryEncoder(int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
         : pin0(pin0), pin1(pin1),
           filteredSensor1Value(9, 1.0, 0.02), filteredSensor2Value(9, 1.0, 0.02) {
@@ -16,9 +17,11 @@ void RotaryEncoder::readValues() {
     // Smoothen the analog values
     values[0] = filteredSensor1Value.updateEstimate(values[0]);
     values[1] = filteredSensor2Value.updateEstimate(values[1]);
+
+    currentRotationAngleDelta = calculateRotationAngleDelta();
 }
 
-float RotaryEncoder::getRotationAngleDelta() {
+float RotaryEncoder::calculateRotationAngleDelta() {
     // Get sensor values
     auto normalizedSensor1Value = values[0] - SENSOR_MIDPOINT;
     auto normalizedSensor2Value = values[1] - SENSOR_MIDPOINT;
@@ -37,5 +40,9 @@ float RotaryEncoder::getRotationAngleDelta() {
     previousRotationAngle = currentRotationAngle;
 
     return rotationAngleDelta;
+}
+
+float RotaryEncoder::getRotationAngleDelta() const {
+    return currentRotationAngleDelta;
 }
 

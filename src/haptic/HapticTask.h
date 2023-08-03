@@ -4,11 +4,11 @@
 #include <FastLED.h>
 #include <LinkedList.h>
 #include "ArduinoJson.h"
-#include "interfaces/IInputConsumer.h"
+#include "interfaces/IMessageConsumer.h"
 #include "inputprocessor/InputMessageDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
-#include "error/ErrorSerializer.h"
+#include "json/JsonSerializer.h"
 
 /**
  * @class   HapticTask
@@ -19,14 +19,14 @@
  * @author  Igor Voronin
  * @date    28.07.2023
  */
-class HapticTask : public ISchedulableDialTask, private IInputConsumer {
+class HapticTask : public ISchedulableDialTask, private ISerialPortUser, private IMessageConsumer {
 public:
     /**
      * @brief Constructor.
      *
      * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list containing messages to be processed
      */
-    explicit HapticTask(LinkedList<InputMessageDto *> *messagesToProcess);
+    explicit HapticTask(LinkedList<InputMessageDto *> &messagesToProcess);
 
     void onCallback() override;
 
@@ -45,11 +45,6 @@ private:
      * @brief JSON-formatted filter string, that describes which attributes are kept when parsing a message.
      */
     StaticJsonDocument<64> filterDoc; // this JSON describes what to filter for
-
-    /**
-     * @brief Pointer to the list of messages to be processed.
-     */
-    LinkedList<InputMessageDto *> *messagesToProcess;
 
     void useData(JsonVariantConst jsonData) override;
 

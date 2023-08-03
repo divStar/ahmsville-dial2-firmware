@@ -2,6 +2,7 @@
 #define MACROKEY_H
 
 #include <Arduino.h>
+#include "interfaces/ISerialPortUser.h"
 
 /**
  * @class   MacroKey
@@ -12,13 +13,13 @@
  * @author  Igor Voronin
  * @date    16.07.2023
  */
-class MacroKey {
+class MacroKey : private ISerialPortUser {
 public:
     /**
      * @brief Constructor.
      *
-     * @param keyId (int) the ID of the key
-     * @param pin   (int) number of the pin of this macro-key
+     * @param keyId     (int) the ID of the key
+     * @param pin       (int) number of the pin of this macro-key
      */
     explicit MacroKey(int keyId, int pin);
 

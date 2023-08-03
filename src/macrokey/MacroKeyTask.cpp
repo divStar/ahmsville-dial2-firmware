@@ -1,10 +1,11 @@
 #include "MacroKeyTask.h"
 
-MacroKey MacroKeyTask::keys[5] = {MacroKey(0, 0),
-                                  MacroKey(1, 1),
-                                  MacroKey(2, 5),
-                                  MacroKey(3, 10),
-                                  MacroKey(4, 12)
+MacroKey MacroKeyTask::keys[5] = {
+        MacroKey(0, 0),
+        MacroKey(1, 1),
+        MacroKey(2, 5),
+        MacroKey(3, 10),
+        MacroKey(4, 12)
 };
 
 MacroKeyTask::MacroKeyTask() : ISchedulableDialTask("macrokey") {
@@ -13,7 +14,7 @@ MacroKeyTask::MacroKeyTask() : ISchedulableDialTask("macrokey") {
 
     // set the correct type, that will be displayed in the JSON each key will be sending
     // since `MacroKey::type` is initialized to `macrokey`, this is technically not necessary
-    for (auto key : keys) {
+    for (auto key: keys) {
         key.setType(getTaskType());
     }
 }

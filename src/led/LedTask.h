@@ -5,11 +5,11 @@
 #include <LinkedList.h>
 #include "ArduinoJson.h"
 #include "LedIndexEnum.h"
-#include "interfaces/IInputConsumer.h"
+#include "interfaces/IMessageConsumer.h"
 #include "inputprocessor/InputMessageDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
-#include "error/ErrorSerializer.h"
+#include "json/JsonSerializer.h"
 
 #define LED_TYPE    WS2812B
 #define DATA_PIN    3
@@ -26,9 +26,14 @@
  * @author  Igor Voronin
  * @date    06.07.2023
  */
-class LedTask : public ISchedulableDialTask, private IInputConsumer {
+class LedTask : public ISchedulableDialTask, private ISerialPortUser, private IMessageConsumer {
 public:
-    explicit LedTask(LinkedList<InputMessageDto *> *messagesToProcess);
+    /**
+     * @brief Constructor.
+     *
+     * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list containing messages to be processed
+     */
+    explicit LedTask(LinkedList<InputMessageDto *> &messagesToProcess);
 
     void onSetup() override;
 
@@ -44,23 +49,19 @@ private:
      * @brief JSON-formatted filter string, that describes which attributes are kept when parsing a message.
      */
     StaticJsonDocument<128> filterDoc; // this JSON describes what to filter for
-    /**
-     * @brief Pointer to the list of messages to be processed.
-     */
-    LinkedList<InputMessageDto *> *messagesToProcess;
 
     void useData(JsonVariantConst jsonData) override;
 
     bool isValidData(JsonVariantConst jsonData) override;
 
     /**
-     * @brief Sends a validation error using the ErrorSerializer.
+     * @brief Sends a validation json using the JsonSerializer.
      *
-     * @param error     (const char*) error (number or name)
+     * @param error     (const char*) json (number or name)
      * @param message   (const char*) message to send
      * @param data      (byte) supposedly invalid data
      */
-    void sendValidationError(const char* error, const char* message, byte data);
+    void sendValidationError(const char *error, const char *message, byte data);
 };
 
 #endif //DIALER_LEDTASK_H

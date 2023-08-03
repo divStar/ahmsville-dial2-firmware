@@ -2,7 +2,8 @@
 #include "MacroKey.h"
 
 MacroKey::MacroKey(int keyId, int pin)
-        : keyId(keyId), pin(pin), riseTime(0), fallTime(0), lastInterrupttime(0), type("macrokey") {}
+        : ISerialPortUser(configuredSerialPort()),
+          keyId(keyId), pin(pin), riseTime(0), fallTime(0), lastInterrupttime(0), type("macrokey") {}
 
 int MacroKey::getPin() const {
     return pin;
@@ -28,8 +29,8 @@ void MacroKey::onChangeState() {
             jsonDoc["_rT"] = riseTime;
         }
 
-        serializeJson(jsonDoc, SerialUSB);
-        SerialUSB.println();
+        serializeJson(jsonDoc, serial);
+        serial.println();
     }
 }
 

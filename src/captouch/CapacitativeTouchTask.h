@@ -5,6 +5,7 @@
 #include <ArduinoJson.h>
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "interfaces/ISerialPortUser.h"
 
 /**
  * @class   CapacitativeTouchTask
@@ -15,7 +16,7 @@
  * @author  Igor Voronin
  * @date    29.07.2023
  */
-class CapacitativeTouchTask : public ISchedulableDialTask {
+class CapacitativeTouchTask : public ISchedulableDialTask, private ISerialPortUser {
 public:
     /**
      * @brief Constructor.

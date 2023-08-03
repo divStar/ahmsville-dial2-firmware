@@ -1,7 +1,8 @@
 #include "KnobTask.h"
 
 KnobTask::KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
-        : ISchedulableDialTask("knob"), name(name), knob(RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {
+        : ISchedulableDialTask("knob"), ISerialPortUser(configuredSerialPort()),
+          name(name), knob(RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
@@ -34,6 +35,6 @@ void KnobTask::sendData() {
     jsonDoc["time"] = millis();
     jsonDoc["rotationDelta"] = knob.getRotationAngleDelta();
 
-    serializeJson(jsonDoc, SerialUSB);
-    SerialUSB.println();
+    serializeJson(jsonDoc, serial);
+    serial.println();
 }

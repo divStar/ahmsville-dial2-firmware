@@ -6,7 +6,7 @@
 #include "../../lib/mpu6050-custom/MPU6050.h"
 #include "interfaces/ISchedulableDialTask.h"
 #include "logger/Logger.h"
-#include "error/ErrorSerializer.h"
+#include "json/JsonSerializer.h"
 
 /**
  * @class   SpaceNavigatorTask
@@ -17,7 +17,7 @@
  * @author  Igor Voronin
  * @date    29.07.2023
  */
-class SpaceNavigatorTask : public ISchedulableDialTask {
+class SpaceNavigatorTask : public ISchedulableDialTask, private ISerialPortUser {
 public:
     /**
      * @brief Constructor.

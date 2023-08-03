@@ -33,7 +33,7 @@ public:
     /**
      * @return (float) Gets the positive or negative rotation angle delta between the current and the previous angle.
      */
-    float getRotationAngleDelta();
+    float getRotationAngleDelta() const;
 
 private:
     /**
@@ -63,6 +63,11 @@ private:
     float previousRotationAngle = 0;
 
     /**
+     * @brief Current rotation angle delta.
+     */
+    float currentRotationAngleDelta = 0;
+
+    /**
      * @brief Kalman filter for the first sensor.
      */
     SimpleKalmanFilter filteredSensor1Value;
@@ -70,6 +75,13 @@ private:
      * @brief Kalman filter for the second sensor.
      */
     SimpleKalmanFilter filteredSensor2Value;
+
+    /**
+     * @brief Calculates the rotation angle delta between the current and previous rotation angles.
+     *
+     * @return (float) current rotation angle delta
+     */
+    float calculateRotationAngleDelta();
 };
 
 #endif //ROTARYENCODER_H

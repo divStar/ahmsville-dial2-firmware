@@ -1,10 +1,12 @@
-#ifndef DIALER_IINPUTCONSUMER_H
-#define DIALER_IINPUTCONSUMER_H
+#ifndef DIALER_IMESSAGECONSUMER_H
+#define DIALER_IMESSAGECONSUMER_H
 
-#include "ArduinoJson.h"
+#include <ArduinoJson.h>
+#include <LinkedList.h>
+#include "inputprocessor/InputMessageDto.h"
 
 /**
- * @class   IInputConsumer
+ * @class   IMessageConsumer
  * @brief   Provides function signatures, that an input consumer subclass must implement.
  *
  * This abstract class provides function signatures, that determine a subclass as an input consumer.
@@ -15,8 +17,11 @@
  * @author  Igor Voronin
  * @date    27.07.2023
  */
-class IInputConsumer {
+class IMessageConsumer {
 public:
+    explicit IMessageConsumer(LinkedList<InputMessageDto *> &messagesToProcess)
+            : messagesToProcess(messagesToProcess) {};
+
     /**
      * @brief uses the given data, usually to send it to a particular sensor
      *
@@ -31,6 +36,12 @@ public:
      * @return          (bool) <code>true</code> if the given data is valid, <code>false</code> otherwise
      */
     virtual bool isValidData(JsonVariantConst jsonData) = 0;
+
+protected:
+    /**
+     * @brief Pointer to the list of messages to be processed.
+     */
+    LinkedList<InputMessageDto *> &messagesToProcess;
 };
 
-#endif //DIALER_IINPUTCONSUMER_H
+#endif //DIALER_IMESSAGECONSUMER_H

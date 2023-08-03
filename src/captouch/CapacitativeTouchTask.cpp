@@ -1,12 +1,14 @@
 #include "CapacitativeTouchTask.h"
 
 CapacitativeTouchTask::CapacitativeTouchTask(byte sendingPin, byte receivingPin)
-        : ISchedulableDialTask("captouch"), sensor(CapacitiveSensor(sendingPin, receivingPin)) {
+        : ISchedulableDialTask("captouch"), ISerialPortUser(configuredSerialPort()),
+          sensor(CapacitiveSensor(sendingPin, receivingPin)) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
 
 void CapacitativeTouchTask::onSetup() {
+    // reset millis
     sensor.set_CS_AutocaL_Millis(0xFFFFFFFF);
 }
 
@@ -25,6 +27,6 @@ void CapacitativeTouchTask::sendData(long sensorValue) {
     jsonDoc["value"] = sensorValue;
     jsonDoc["time"] = millis();
 
-    serializeJson(jsonDoc, SerialUSB);
-    SerialUSB.println();
+    serializeJson(jsonDoc, serial);
+    serial.println();
 }

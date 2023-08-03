@@ -20,7 +20,7 @@ public:
      *
      * @param taskType  (const char*) name of the task type (e.g. "haptic" or "led")
      */
-    explicit ISchedulableDialTask(const char* taskType) : DialTask(taskType) {};
+    explicit ISchedulableDialTask(const char *taskType) : DialTask(taskType) {};
 };
 
 #endif //DIALER_ISCHEDULABLEDIALTASK_H

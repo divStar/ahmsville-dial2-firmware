@@ -5,6 +5,8 @@
 #include "InputMessageDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "interfaces/ISerialPortUser.h"
+#include "interfaces/IMessageConsumer.h"
 
 /**
  * @class   InputProcessorTask
@@ -15,9 +17,14 @@
  * @author  Igor Voronin
  * @date    29.07.2023
  */
-class InputProcessorTask : public ISchedulableDialTask {
+class InputProcessorTask : public ISchedulableDialTask, private ISerialPortUser, private IMessageConsumer {
 public:
-    explicit InputProcessorTask(LinkedList<InputMessageDto *> *messagesToProcess, Stream *serial);
+    /**
+     * @brief Constructor.
+     *
+     * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list to add messages to
+     */
+    explicit InputProcessorTask(LinkedList<InputMessageDto *> &messagesToProcess);
 
     void onCallback() override;
 
@@ -32,15 +39,9 @@ private:
      */
     static const int BUFFER_SIZE = 2048;
 
-    /**
-     * @brief Pointer to the list of messages to be processed.
-     */
-    LinkedList<InputMessageDto *> *messagesToProcess;
+    void useData(JsonVariantConst jsonData) override { /* data is not used, but only processed */ };
 
-    /**
-     * @brief Pointer to the Serial port to listen on.
-     */
-    Stream *serial;
+    bool isValidData(JsonVariantConst jsonData) override { /* there is no data to validate */ return false; };
 
     /**
      * @brief Process the input from the given Serial port.

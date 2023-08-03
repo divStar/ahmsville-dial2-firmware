@@ -15,6 +15,7 @@
 #include <TaskScheduler.h>
 #include <LinkedList.h>
 #include "logger/Logger.h"
+#include "interfaces/ISerialPort.h"
 #include "inputprocessor/InputProcessorTask.h"
 #include "dataprocessor/MessagesCleanerTask.h"
 #include "led/LedTask.h"

@@ -19,7 +19,7 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param serial (Stream) Pointer to the Serial port to use
+     * @param serial (Stream) reference to the Serial port to use
      */
     explicit ISerialPortUser(Stream &serial) : serial(serial) {};
 

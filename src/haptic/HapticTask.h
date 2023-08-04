@@ -24,7 +24,7 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list containing messages to be processed
+     * @param messagesToProcess (LinkedList<InputMessageDto *>*) reference to the list containing messages to be processed
      */
     explicit HapticTask(LinkedList<InputMessageDto *> &messagesToProcess);
 

@@ -31,7 +31,7 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list containing messages to be processed
+     * @param messagesToProcess (LinkedList<InputMessageDto *>*) reference to the list containing messages to be processed
      */
     explicit LedTask(LinkedList<InputMessageDto *> &messagesToProcess);
 

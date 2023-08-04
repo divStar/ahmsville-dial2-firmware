@@ -33,7 +33,7 @@
 Scheduler scheduler;
 
 /**
- * @brief Pointer to the list of messages to be processed.
+ * @brief reference to the list of messages to be processed.
  */
 LinkedList<InputMessageDto *> messagesToProcess;
 

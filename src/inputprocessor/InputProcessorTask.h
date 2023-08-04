@@ -22,7 +22,7 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param messagesToProcess (LinkedList<InputMessageDto *>*) pointer to the list to add messages to
+     * @param messagesToProcess (LinkedList<InputMessageDto *>*) reference to the list to add messages to
      */
     explicit InputProcessorTask(LinkedList<InputMessageDto *> &messagesToProcess);
 

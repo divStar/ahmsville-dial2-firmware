@@ -1,19 +1,19 @@
 #ifndef DIALER_KNOBTASK_H
 #define DIALER_KNOBTASK_H
 
-#include <Arduino.h>
 #include <ArduinoJson.h>
-#include "RotaryEncoder.h"
+#include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
 #include "interfaces/ISerialPortUser.h"
+#include "interfaces/sensors/IRotaryEncoderAdapter.h"
 
 /**
  * @class   KnobTask
- * @brief   Task to handle a knob.
+ * @brief   Task to handle a sensorAdapter.
  *
- * This class is a ISchedulableDialTask, that handles a knob.
+ * This class is a ISchedulableDialTask, that handles a sensorAdapter.
  *
- * <p>Make sure to register proper pins and give the knob a proper name to be able to distinguish it from other knobs.</p>
+ * <p>Make sure to register proper pins and give the sensorAdapter a proper name to be able to distinguish it from other knobs.</p>
  *
  * @author  Igor Voronin
  * @date    06.07.2023
@@ -23,13 +23,10 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param name          (const char*) name of the knob
-     * @param pin0          (int) number of the first pin of the knob
-     * @param pin1          (int) number of the second pin of the knob
-     * @param pinInterrupt0 (int) number of the first interrupt-pin of the knob (currently not used)
-     * @param pinInterrupt1 (int) number of the second interrupt-pin of the knob (currently not used)
+     * @param name          (const char*) name of the sensorAdapter
+     * @param sensorAdapter (IRotaryEncoderAdapter) sensor adapter to use
      */
-    explicit KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1);
+    explicit KnobTask(const char *name, IRotaryEncoderAdapter &sensorAdapter);
 
     void onSetup() override;
 
@@ -47,17 +44,17 @@ private:
     constexpr static const float ROTATION_THRESHOLD = 0.004;
 
     /**
-     * @brief Name of the knob.
+     * @brief Name of the sensorAdapter.
      */
     const char *name;
 
     /**
-     * @brief Rotatry encoder for the knob, which handles all necessary calculations.
+     * @brief Rotatry encoder for the sensorAdapter, which handles all necessary calculations.
      */
-    RotaryEncoder knob;
+    IRotaryEncoderAdapter &sensorAdapter;
 
     /**
-     * @brief Handles sending the retrieved sensor values to the Serial port.
+     * @brief Handles sending the retrieved sensorAdapter values to the Serial port.
      */
     void sendData();
 };

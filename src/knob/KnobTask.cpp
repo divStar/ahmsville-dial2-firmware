@@ -1,8 +1,8 @@
 #include "KnobTask.h"
 
-KnobTask::KnobTask(const char *name, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
-        : ISchedulableDialTask("knob"), ISerialPortUser(configuredSerialPort()),
-          name(name), knob(RotaryEncoder(pin0, pin1, pinInterrupt0, pinInterrupt1)) {
+KnobTask::KnobTask(const char *name, IRotaryEncoderAdapter &sensorAdapter)
+        : ISchedulableDialTask("sensorAdapter"), ISerialPortUser(configuredSerialPort()),
+          name(name), sensorAdapter(sensorAdapter) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
@@ -13,14 +13,14 @@ void KnobTask::onSetup() {
 
     while (millis() - startMillis < 500) {
         // reading values in order to prevent an "initial spike" of wrong values in the beginning
-        knob.readValues();
+        sensorAdapter.readValues();
         startMillis = startMillis; // NOOP to satisfy Cling-Tidy
     }
 }
 
 void KnobTask::onCallback() {
-    knob.readValues();
-    auto rotationAngleDelta = knob.getRotationAngleDelta();
+    sensorAdapter.readValues();
+    auto rotationAngleDelta = sensorAdapter.getRotationAngleDelta();
 
     if (rotationAngleDelta > ROTATION_THRESHOLD || rotationAngleDelta < -ROTATION_THRESHOLD) {
         sendData();
@@ -33,7 +33,7 @@ void KnobTask::sendData() {
     jsonDoc["type"] = getTaskType();
     jsonDoc["name"] = name;
     jsonDoc["time"] = millis();
-    jsonDoc["rotationDelta"] = knob.getRotationAngleDelta();
+    jsonDoc["rotationDelta"] = sensorAdapter.getRotationAngleDelta();
 
     serializeJson(jsonDoc, serial);
     serial.println();

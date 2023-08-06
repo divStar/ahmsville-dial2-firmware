@@ -1,19 +1,19 @@
-#include "CapacitativeTouchTask.h"
+#include "CapacitiveTouchTask.h"
 
-CapacitativeTouchTask::CapacitativeTouchTask(byte sendingPin, byte receivingPin)
+CapacitiveTouchTask::CapacitiveTouchTask(ICapacitiveSensorAdapter &sensorAdapter)
         : ISchedulableDialTask("captouch"), ISerialPortUser(configuredSerialPort()),
-          sensor(CapacitiveSensor(sendingPin, receivingPin)) {
+          sensorAdapter(sensorAdapter) {
     setInterval(0);
     setIterations(TASK_FOREVER);
 }
 
-void CapacitativeTouchTask::onSetup() {
+void CapacitiveTouchTask::onSetup() {
     // reset millis
-    sensor.set_CS_AutocaL_Millis(0xFFFFFFFF);
+    sensorAdapter.set_CS_AutocaL_Millis(0xFFFFFFFF);
 }
 
-void CapacitativeTouchTask::onCallback() {
-    long sensorValue = sensor.capacitiveSensor(SAMPLES);
+void CapacitiveTouchTask::onCallback() {
+    long sensorValue = sensorAdapter.capacitiveSensor(SAMPLES);
 
     if (sensorValue > PROXIMITY_THRESHOLD) {
         // Create and output serialized JSON
@@ -21,7 +21,7 @@ void CapacitativeTouchTask::onCallback() {
     }
 }
 
-void CapacitativeTouchTask::sendData(long sensorValue) {
+void CapacitiveTouchTask::sendData(long sensorValue) {
     StaticJsonDocument<BUFFER_SIZE> jsonDoc;
     jsonDoc["type"] = getTaskType();
     jsonDoc["value"] = sensorValue;

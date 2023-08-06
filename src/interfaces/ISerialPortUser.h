@@ -1,7 +1,7 @@
 #ifndef DIALER_ISERIALPORTUSER_H
 #define DIALER_ISERIALPORTUSER_H
 
-#include <Arduino.h>
+#include <Stream.h>
 #include <ArduinoJson.h>
 #include "ISerialPort.h"
 

@@ -1,7 +1,6 @@
 #ifndef MACROKEY_H
 #define MACROKEY_H
 
-#include <Arduino.h>
 #include "interfaces/ISerialPortUser.h"
 
 /**

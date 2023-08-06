@@ -3,6 +3,7 @@
 
 #include "MacroKey.h"
 #include "interfaces/ISchedulableDialTask.h"
+#include "interfaces/sensors/IMacroKeys.h"
 
 /**
  * @class   MacroKeyTask
@@ -20,20 +21,12 @@ public:
     /**
      * @brief Constructor.
      */
-    MacroKeyTask();
+    explicit MacroKeyTask(IMacroKeys &macroKeys);
 
     void onSetup() override;
 
 private:
-    /**
-     * @brief Array of macro-keys.
-     */
-    static MacroKey keys[];
-
-    /**
-     * @brief This function initializes all macro-keys.
-     */
-    static void initializeKeys();
+    IMacroKeys &macroKeys;
 };
 
 

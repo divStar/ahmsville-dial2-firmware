@@ -1,15 +1,14 @@
 #ifndef DIALER_INPUTMESSAGEDTO_H
 #define DIALER_INPUTMESSAGEDTO_H
 
-#include <Arduino.h>
 #include "logger/Logger.h"
 
 /**
  * @class   InputMessageDto
- * @brief   DTO (data transfer object) used to transport a message from the Serial port to a sensor task.
+ * @brief   DTO (data transfer object) used to transport a message from the Serial port to a sensorAdapter task.
  *
  * This class describes a DTO (data transfer object), which is used to transport a message from the Serial port
- * to a sensor task. It also provides a function to make it possible to determine whether this object is still valid or
+ * to a sensorAdapter task. It also provides a function to make it possible to determine whether this object is still valid or
  * subject to be pruned by the MessagesCleanerTask.
  *
  * @author  Igor Voronin

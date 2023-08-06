@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spacenavigatortask_0',['SpaceNavigatorTask',['../d9/d16/class_space_navigator_task.html',1,'']]]
+  ['taskswitchertask_0',['TaskSwitcherTask',['../d5/db9/class_task_switcher_task.html',1,'']]]
 ];

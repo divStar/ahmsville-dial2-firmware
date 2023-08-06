@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('d4/dff/class_knob_task.html','../../')
 </div><!--header-->
 <div class="contents">
 
-<p>Task to handle a knob.  
+<p>Task to handle a sensorAdapter.  
  <a href="../../d4/dff/class_knob_task.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../dc/d46/_knob_task_8h_source.html">KnobTask.h</a>&gt;</code></p>
@@ -119,9 +119,9 @@ Inheritance diagram for KnobTask:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a590dbb8cf8a790ce00d98d38854c71bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#a590dbb8cf8a790ce00d98d38854c71bc">KnobTask</a> (const char *<a class="el" href="../../d4/dff/class_knob_task.html#ac1292f91d1b061ab37d81d79d4158ebc">name</a>, int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)</td></tr>
-<tr class="memdesc:a590dbb8cf8a790ce00d98d38854c71bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="separator:a590dbb8cf8a790ce00d98d38854c71bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa41de8b18fe3cfdf2862747dd7ad5be4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#aa41de8b18fe3cfdf2862747dd7ad5be4">KnobTask</a> (const char *<a class="el" href="../../d4/dff/class_knob_task.html#ac1292f91d1b061ab37d81d79d4158ebc">name</a>, <a class="el" href="../../da/d6a/class_i_rotary_encoder_adapter.html">IRotaryEncoderAdapter</a> &amp;<a class="el" href="../../d4/dff/class_knob_task.html#a4553601d0bf012e17a2767c51b8b5e3f">sensorAdapter</a>)</td></tr>
+<tr class="memdesc:aa41de8b18fe3cfdf2862747dd7ad5be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:aa41de8b18fe3cfdf2862747dd7ad5be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55bda2fc882ca2e9f88f1fe6cfc190f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#a55bda2fc882ca2e9f88f1fe6cfc190f9">onSetup</a> () override</td></tr>
 <tr class="memdesc:a55bda2fc882ca2e9f88f1fe6cfc190f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function, which usually runs in the <a class="el" href="../../df/d0a/main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a> function of the <a class="el" href="../../d4/dbf/main_8h.html" title="Main program of the device.">main.h</a> file.  <br /></td></tr>
 <tr class="separator:a55bda2fc882ca2e9f88f1fe6cfc190f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,17 +152,17 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a3cf2cd03f47080faff00c485de2bd5c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#a3cf2cd03f47080faff00c485de2bd5c9">sendData</a> ()</td></tr>
-<tr class="memdesc:a3cf2cd03f47080faff00c485de2bd5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles sending the retrieved sensor values to the Serial port.  <br /></td></tr>
+<tr class="memdesc:a3cf2cd03f47080faff00c485de2bd5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles sending the retrieved sensorAdapter values to the Serial port.  <br /></td></tr>
 <tr class="separator:a3cf2cd03f47080faff00c485de2bd5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac1292f91d1b061ab37d81d79d4158ebc"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#ac1292f91d1b061ab37d81d79d4158ebc">name</a></td></tr>
-<tr class="memdesc:ac1292f91d1b061ab37d81d79d4158ebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the knob.  <br /></td></tr>
+<tr class="memdesc:ac1292f91d1b061ab37d81d79d4158ebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the sensorAdapter.  <br /></td></tr>
 <tr class="separator:ac1292f91d1b061ab37d81d79d4158ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac06079fd6e77947505803069746ac333"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dfd/class_rotary_encoder.html">RotaryEncoder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#ac06079fd6e77947505803069746ac333">knob</a></td></tr>
-<tr class="memdesc:ac06079fd6e77947505803069746ac333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotatry encoder for the knob, which handles all necessary calculations.  <br /></td></tr>
-<tr class="separator:ac06079fd6e77947505803069746ac333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4553601d0bf012e17a2767c51b8b5e3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d6a/class_i_rotary_encoder_adapter.html">IRotaryEncoderAdapter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dff/class_knob_task.html#a4553601d0bf012e17a2767c51b8b5e3f">sensorAdapter</a></td></tr>
+<tr class="memdesc:a4553601d0bf012e17a2767c51b8b5e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotatry encoder for the sensorAdapter, which handles all necessary calculations.  <br /></td></tr>
+<tr class="separator:a4553601d0bf012e17a2767c51b8b5e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -181,10 +181,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ae50ca0ff0781d94b25a9c8f60082432d inherit pro_attribs_class_i_serial_port_user"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Task to handle a knob. </p>
+<div class="textblock"><p>Task to handle a sensorAdapter. </p>
 <p>Enumeration of named LEDs.</p>
-<p>This class is a <a class="el" href="../../d2/d19/class_i_schedulable_dial_task.html" title="Inherits from Task and DialTask to provide one class for Tasks to implement.">ISchedulableDialTask</a>, that handles a knob.</p>
-<p>Make sure to register proper pins and give the knob a proper name to be able to distinguish it from other knobs.</p>
+<p>This class is a <a class="el" href="../../d2/d19/class_i_schedulable_dial_task.html" title="Inherits from Task and DialTask to provide one class for Tasks to implement.">ISchedulableDialTask</a>, that handles a sensorAdapter.</p>
+<p>Make sure to register proper pins and give the sensorAdapter a proper name to be able to distinguish it from other knobs.</p>
 <dl class="section author"><dt>Author</dt><dd>Igor Voronin </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>06.07.2023</dd></dl>
 <p>This enumeration contains all named LEDs and its purpose is to make it easier to understand which LED is which.</p>
@@ -197,8 +197,8 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 <dl class="section author"><dt>Author</dt><dd>Igor Voronin </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>25.06.2023 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a590dbb8cf8a790ce00d98d38854c71bc" name="a590dbb8cf8a790ce00d98d38854c71bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a590dbb8cf8a790ce00d98d38854c71bc">&#9670;&#160;</a></span>KnobTask()</h2>
+<a id="aa41de8b18fe3cfdf2862747dd7ad5be4" name="aa41de8b18fe3cfdf2862747dd7ad5be4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa41de8b18fe3cfdf2862747dd7ad5be4">&#9670;&#160;</a></span>KnobTask()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -215,26 +215,8 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pin0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pin1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pinInterrupt0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pinInterrupt1</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="../../da/d6a/class_i_rotary_encoder_adapter.html">IRotaryEncoderAdapter</a> &amp;&#160;</td>
+          <td class="paramname"><em>sensorAdapter</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -252,11 +234,8 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 <p>Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>(const char*) name of the knob </td></tr>
-    <tr><td class="paramname">pin0</td><td>(int) number of the first pin of the knob </td></tr>
-    <tr><td class="paramname">pin1</td><td>(int) number of the second pin of the knob </td></tr>
-    <tr><td class="paramname">pinInterrupt0</td><td>(int) number of the first interrupt-pin of the knob (currently not used) </td></tr>
-    <tr><td class="paramname">pinInterrupt1</td><td>(int) number of the second interrupt-pin of the knob (currently not used) </td></tr>
+    <tr><td class="paramname">name</td><td>(const char*) name of the sensorAdapter </td></tr>
+    <tr><td class="paramname">sensorAdapter</td><td>(<a class="el" href="../../da/d6a/class_i_rotary_encoder_adapter.html" title="Interface to decouple the actual rotary encoder sensors from the task processing it.">IRotaryEncoderAdapter</a>) sensor adapter to use </td></tr>
   </table>
   </dd>
 </dl>
@@ -349,7 +328,7 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 </table>
 </div><div class="memdoc">
 
-<p>Handles sending the retrieved sensor values to the Serial port. </p>
+<p>Handles sending the retrieved sensorAdapter values to the Serial port. </p>
 
 </div>
 </div>
@@ -378,30 +357,6 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 
 </div>
 </div>
-<a id="ac06079fd6e77947505803069746ac333" name="ac06079fd6e77947505803069746ac333"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac06079fd6e77947505803069746ac333">&#9670;&#160;</a></span>knob</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../db/dfd/class_rotary_encoder.html">RotaryEncoder</a> KnobTask::knob</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Rotatry encoder for the knob, which handles all necessary calculations. </p>
-
-</div>
-</div>
 <a id="ac1292f91d1b061ab37d81d79d4158ebc" name="ac1292f91d1b061ab37d81d79d4158ebc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1292f91d1b061ab37d81d79d4158ebc">&#9670;&#160;</a></span>name</h2>
 
@@ -422,7 +377,7 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 </table>
 </div><div class="memdoc">
 
-<p>Name of the knob. </p>
+<p>Name of the sensorAdapter. </p>
 
 </div>
 </div>
@@ -450,6 +405,30 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 
 </div>
 </div>
+<a id="a4553601d0bf012e17a2767c51b8b5e3f" name="a4553601d0bf012e17a2767c51b8b5e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4553601d0bf012e17a2767c51b8b5e3f">&#9670;&#160;</a></span>sensorAdapter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d6a/class_i_rotary_encoder_adapter.html">IRotaryEncoderAdapter</a>&amp; KnobTask::sensorAdapter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rotatry encoder for the sensorAdapter, which handles all necessary calculations. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>knob/<a class="el" href="../../dc/d46/_knob_task_8h_source.html">KnobTask.h</a></li>
 <li>knob/<a class="el" href="../../d1/d3e/_knob_task_8cpp.html">KnobTask.cpp</a></li>
@@ -460,7 +439,7 @@ For <b><code>MK_LED#</code></b> let the macro-keys face you from left to right w
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d4/dff/class_knob_task.html">KnobTask</a></li>
-    <li class="footer">Generated on Sun Aug 6 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+    <li class="footer">Generated on Mon Aug 7 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
   </ul>
 </div>
 </body>

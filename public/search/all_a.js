@@ -13,5 +13,6 @@ var searchData=
   ['logger_2ecpp_10',['Logger.cpp',['../de/d27/_logger_8cpp.html',1,'']]],
   ['logger_2eh_11',['Logger.h',['../d6/dec/_logger_8h.html',1,'']]],
   ['loop_12',['loop',['../df/d0a/main_8cpp.html#afe461d27b9c48d5921c00d521181f12f',1,'main.cpp']]],
-  ['lowerknobtask_13',['lowerKnobTask',['../d4/dbf/main_8h.html#a39aa96062eb588ca13a678a8058d556c',1,'main.h']]]
+  ['lowerknobsensor_13',['lowerKnobSensor',['../d4/dbf/main_8h.html#a700d461b586387e2b6d9b257280fcd7b',1,'main.h']]],
+  ['lowerknobtask_14',['lowerKnobTask',['../d4/dbf/main_8h.html#a39aa96062eb588ca13a678a8058d556c',1,'main.h']]]
 ];

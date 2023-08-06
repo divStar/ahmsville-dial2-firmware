@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rotaryencoder_0',['RotaryEncoder',['../db/dfd/class_rotary_encoder.html',1,'']]]
+  ['spacenavigatortask_0',['SpaceNavigatorTask',['../d9/d16/class_space_navigator_task.html',1,'']]]
 ];

@@ -1,8 +1,25 @@
 var searchData=
 [
-  ['haptic_5fpin_0',['HAPTIC_PIN',['../d3/d8a/class_haptic_task.html#aea7d5033e84fa2a2e7c23be2622d94c7',1,'HapticTask']]],
-  ['haptictask_1',['HapticTask',['../d3/d8a/class_haptic_task.html',1,'HapticTask'],['../d3/d8a/class_haptic_task.html#a60823fbc53b97a5901fc41790db2998c',1,'HapticTask::HapticTask()']]],
-  ['haptictask_2',['hapticTask',['../d4/dbf/main_8h.html#aa73db4813992b511bacf7748ee0968b3',1,'main.h']]],
-  ['haptictask_2ecpp_3',['HapticTask.cpp',['../d1/d0e/_haptic_task_8cpp.html',1,'']]],
-  ['haptictask_2eh_4',['HapticTask.h',['../da/ddf/_haptic_task_8h.html',1,'']]]
+  ['haptic_5fpin_0',['HAPTIC_PIN',['../d4/dbf/main_8h.html#a7da83d99ea935965c32142ca9845ec97',1,'main.h']]],
+  ['hapticpin_1',['hapticPin',['../df/ded/class_hardware_haptic_sensor_adapter.html#af02a8068cddf1e7c0071941581f90cbd',1,'HardwareHapticSensorAdapter']]],
+  ['hapticsensor_2',['hapticSensor',['../d4/dbf/main_8h.html#a39ca77e35f8062d0872fbb4b9a9a00be',1,'main.h']]],
+  ['haptictask_3',['HapticTask',['../d3/d8a/class_haptic_task.html',1,'HapticTask'],['../d3/d8a/class_haptic_task.html#acfeef1fd3f372283ffc486726ce7863f',1,'HapticTask::HapticTask()']]],
+  ['haptictask_4',['hapticTask',['../d4/dbf/main_8h.html#aa73db4813992b511bacf7748ee0968b3',1,'main.h']]],
+  ['haptictask_2ecpp_5',['HapticTask.cpp',['../d1/d0e/_haptic_task_8cpp.html',1,'']]],
+  ['haptictask_2eh_6',['HapticTask.h',['../da/ddf/_haptic_task_8h.html',1,'']]],
+  ['hardwarecapacitivesensoradapter_7',['HardwareCapacitiveSensorAdapter',['../df/dba/class_hardware_capacitive_sensor_adapter.html',1,'HardwareCapacitiveSensorAdapter'],['../df/dba/class_hardware_capacitive_sensor_adapter.html#a5f0b073cfa2ac7f40204bd440096f780',1,'HardwareCapacitiveSensorAdapter::HardwareCapacitiveSensorAdapter()']]],
+  ['hardwarecapacitivesensoradapter_2ecpp_8',['HardwareCapacitiveSensorAdapter.cpp',['../dc/d55/_hardware_capacitive_sensor_adapter_8cpp.html',1,'']]],
+  ['hardwarecapacitivesensoradapter_2eh_9',['HardwareCapacitiveSensorAdapter.h',['../d6/daa/_hardware_capacitive_sensor_adapter_8h.html',1,'']]],
+  ['hardwarehapticsensoradapter_10',['HardwareHapticSensorAdapter',['../df/ded/class_hardware_haptic_sensor_adapter.html',1,'HardwareHapticSensorAdapter'],['../df/ded/class_hardware_haptic_sensor_adapter.html#abe205a01774ca25a502dc6664fdf8695',1,'HardwareHapticSensorAdapter::HardwareHapticSensorAdapter()']]],
+  ['hardwarehapticsensoradapter_2ecpp_11',['HardwareHapticSensorAdapter.cpp',['../d5/de3/_hardware_haptic_sensor_adapter_8cpp.html',1,'']]],
+  ['hardwarehapticsensoradapter_2eh_12',['HardwareHapticSensorAdapter.h',['../d0/dc3/_hardware_haptic_sensor_adapter_8h.html',1,'']]],
+  ['hardwaremacrokeys_13',['HardwareMacroKeys',['../dc/dac/class_hardware_macro_keys.html',1,'HardwareMacroKeys'],['../dc/dac/class_hardware_macro_keys.html#a30837a43082c15b34f2062322e515d97',1,'HardwareMacroKeys::HardwareMacroKeys()']]],
+  ['hardwaremacrokeys_2ecpp_14',['HardwareMacroKeys.cpp',['../d2/d85/_hardware_macro_keys_8cpp.html',1,'']]],
+  ['hardwaremacrokeys_2eh_15',['HardwareMacroKeys.h',['../d3/d7b/_hardware_macro_keys_8h.html',1,'']]],
+  ['hardwarerotaryencoderadapter_16',['HardwareRotaryEncoderAdapter',['../da/d3a/class_hardware_rotary_encoder_adapter.html',1,'HardwareRotaryEncoderAdapter'],['../da/d3a/class_hardware_rotary_encoder_adapter.html#a8468eb9fddeeb692df070dae034b33a6',1,'HardwareRotaryEncoderAdapter::HardwareRotaryEncoderAdapter()']]],
+  ['hardwarerotaryencoderadapter_2ecpp_17',['HardwareRotaryEncoderAdapter.cpp',['../dc/dcc/_hardware_rotary_encoder_adapter_8cpp.html',1,'']]],
+  ['hardwarerotaryencoderadapter_2eh_18',['HardwareRotaryEncoderAdapter.h',['../d0/d08/_hardware_rotary_encoder_adapter_8h.html',1,'']]],
+  ['hardwarespacenavigatorsensoradapter_19',['HardwareSpaceNavigatorSensorAdapter',['../dd/d27/class_hardware_space_navigator_sensor_adapter.html',1,'HardwareSpaceNavigatorSensorAdapter'],['../dd/d27/class_hardware_space_navigator_sensor_adapter.html#a5f2c11d98505f10ee951767ddde072ec',1,'HardwareSpaceNavigatorSensorAdapter::HardwareSpaceNavigatorSensorAdapter()']]],
+  ['hardwarespacenavigatorsensoradapter_2ecpp_20',['HardwareSpaceNavigatorSensorAdapter.cpp',['../d0/de9/_hardware_space_navigator_sensor_adapter_8cpp.html',1,'']]],
+  ['hardwarespacenavigatorsensoradapter_2eh_21',['HardwareSpaceNavigatorSensorAdapter.h',['../dd/dc0/_hardware_space_navigator_sensor_adapter_8h.html',1,'']]]
 ];

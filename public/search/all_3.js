@@ -6,6 +6,6 @@ var searchData=
   ['dialtask_3',['DialTask',['../d0/ddf/class_dial_task.html',1,'DialTask'],['../d0/ddf/class_dial_task.html#ae30768e0ebac6ce37882722846242c1b',1,'DialTask::DialTask()']]],
   ['dialtask_2ecpp_4',['DialTask.cpp',['../d4/d26/_dial_task_8cpp.html',1,'']]],
   ['dialtask_2eh_5',['DialTask.h',['../dd/d45/_dial_task_8h.html',1,'']]],
-  ['dmpdataready_6',['dmpDataReady',['../d9/d16/class_space_navigator_task.html#aa5f4d5201c106bc94623f3cb83ba11d8',1,'SpaceNavigatorTask']]],
-  ['dmpinitdone_7',['dmpInitDone',['../d9/d16/class_space_navigator_task.html#a344e5fd838a56f0b4ecd695e6b40efe1',1,'SpaceNavigatorTask']]]
+  ['dmpdataready_6',['dmpDataReady',['../dd/d27/class_hardware_space_navigator_sensor_adapter.html#a091c59126771846ff3a9e4274c455cb5',1,'HardwareSpaceNavigatorSensorAdapter']]],
+  ['dmpinitdone_7',['dmpInitDone',['../dd/d27/class_hardware_space_navigator_sensor_adapter.html#a25d1e98587d6f70f91a3e37f656412bf',1,'HardwareSpaceNavigatorSensorAdapter']]]
 ];

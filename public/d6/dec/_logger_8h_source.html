@@ -98,25 +98,24 @@ $(document).ready(function(){initNavTree('d6/dec/_logger_8h_source.html','../../
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef DIALER_LOGGER_H</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define DIALER_LOGGER_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;ArduinoLog.h&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;RTCZero.h&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d18/_i_serial_port_8h.html">interfaces/ISerialPort.h</a>&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d6/dec/_logger_8h.html#a170fbf3f2b283daa31dbf8ed79c05879">   22</a></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d6/dec/_logger_8h.html#a170fbf3f2b283daa31dbf8ed79c05879">DEFAULT_LOG_FORMAT</a> = <span class="stringliteral">&quot;%02u:%02u:%02u.%03u &quot;</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#a31b4f4c396b492812da518ee505b20a9">printTimestamp</a>(Print &amp;serial);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#a05921c4a30e58d41d10c18ee02da357b">printLogLevel</a>(Print &amp;serial, <span class="keywordtype">int</span> logLevel);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#ac573bfaf12e7beafb1321816c4d08f61">printPrefix</a>(Print *serial, <span class="keywordtype">int</span> logLevel);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#a3bba1f58f6cd934f422886e04c426def">setupLogger</a>();</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif </span><span class="comment">//DIALER_LOGGER_H</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;ArduinoLog.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;RTCZero.h&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d18/_i_serial_port_8h.html">interfaces/ISerialPort.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="../../d6/dec/_logger_8h.html#a170fbf3f2b283daa31dbf8ed79c05879">   21</a></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d6/dec/_logger_8h.html#a170fbf3f2b283daa31dbf8ed79c05879">DEFAULT_LOG_FORMAT</a> = <span class="stringliteral">&quot;%02u:%02u:%02u.%03u &quot;</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#a31b4f4c396b492812da518ee505b20a9">printTimestamp</a>(Print &amp;serial);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#a05921c4a30e58d41d10c18ee02da357b">printLogLevel</a>(Print &amp;serial, <span class="keywordtype">int</span> logLevel);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#ac573bfaf12e7beafb1321816c4d08f61">printPrefix</a>(Print *serial, <span class="keywordtype">int</span> logLevel);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dec/_logger_8h.html#a3bba1f58f6cd934f422886e04c426def">setupLogger</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif </span><span class="comment">//DIALER_LOGGER_H</span></div>
 <div class="ttc" id="a_i_serial_port_8h_html"><div class="ttname"><a href="../../d3/d18/_i_serial_port_8h.html">ISerialPort.h</a></div></div>
 <div class="ttc" id="a_logger_8h_html_a05921c4a30e58d41d10c18ee02da357b"><div class="ttname"><a href="../../d6/dec/_logger_8h.html#a05921c4a30e58d41d10c18ee02da357b">printLogLevel</a></div><div class="ttdeci">void printLogLevel(Print &amp;serial, int logLevel)</div><div class="ttdoc">Prints the log level, prepending the actual message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:23</div></div>
-<div class="ttc" id="a_logger_8h_html_a170fbf3f2b283daa31dbf8ed79c05879"><div class="ttname"><a href="../../d6/dec/_logger_8h.html#a170fbf3f2b283daa31dbf8ed79c05879">DEFAULT_LOG_FORMAT</a></div><div class="ttdeci">static const char *const DEFAULT_LOG_FORMAT</div><div class="ttdoc">Default Log format.</div><div class="ttdef"><b>Definition</b> Logger.h:22</div></div>
+<div class="ttc" id="a_logger_8h_html_a170fbf3f2b283daa31dbf8ed79c05879"><div class="ttname"><a href="../../d6/dec/_logger_8h.html#a170fbf3f2b283daa31dbf8ed79c05879">DEFAULT_LOG_FORMAT</a></div><div class="ttdeci">static const char *const DEFAULT_LOG_FORMAT</div><div class="ttdoc">Default Log format.</div><div class="ttdef"><b>Definition</b> Logger.h:21</div></div>
 <div class="ttc" id="a_logger_8h_html_a31b4f4c396b492812da518ee505b20a9"><div class="ttname"><a href="../../d6/dec/_logger_8h.html#a31b4f4c396b492812da518ee505b20a9">printTimestamp</a></div><div class="ttdeci">void printTimestamp(Print &amp;serial)</div><div class="ttdoc">Prints the timestamp, prepending the actual message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:10</div></div>
 <div class="ttc" id="a_logger_8h_html_a3bba1f58f6cd934f422886e04c426def"><div class="ttname"><a href="../../d6/dec/_logger_8h.html#a3bba1f58f6cd934f422886e04c426def">setupLogger</a></div><div class="ttdeci">void setupLogger()</div><div class="ttdoc">Sets up the ArduinoLog logger (Log).</div><div class="ttdef"><b>Definition</b> Logger.cpp:56</div></div>
 <div class="ttc" id="a_logger_8h_html_ac573bfaf12e7beafb1321816c4d08f61"><div class="ttname"><a href="../../d6/dec/_logger_8h.html#ac573bfaf12e7beafb1321816c4d08f61">printPrefix</a></div><div class="ttdeci">void printPrefix(Print *serial, int logLevel)</div><div class="ttdoc">Prints a set prefix, prepending the actual message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:51</div></div>
@@ -126,7 +125,7 @@ $(document).ready(function(){initNavTree('d6/dec/_logger_8h_source.html','../../
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_e546037d539dab48998ac54ab76cb525.html">logger</a></li><li class="navelem"><a class="el" href="../../d6/dec/_logger_8h.html">Logger.h</a></li>
-    <li class="footer">Generated on Sun Aug 6 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+    <li class="footer">Generated on Mon Aug 7 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
   </ul>
 </div>
 </body>

@@ -109,15 +109,16 @@ Inheritance diagram for DialTask:</div>
  <div class="center">
   <img src="../../d0/ddf/class_dial_task.png" usemap="#DialTask_map" alt=""/>
   <map id="DialTask_map" name="DialTask_map">
-<area href="../../d2/d19/class_i_schedulable_dial_task.html" title="Inherits from Task and DialTask to provide one class for Tasks to implement." alt="ISchedulableDialTask" shape="rect" coords="0,56,143,80"/>
-<area href="../../df/dc7/class_capacitative_touch_task.html" title="Task to handle the capacitative touch button sensor." alt="CapacitativeTouchTask" shape="rect" coords="153,112,296,136"/>
-<area href="../../d3/d8a/class_haptic_task.html" title="Task to handle the haptic motor." alt="HapticTask" shape="rect" coords="153,168,296,192"/>
-<area href="../../d0/df8/class_input_processor_task.html" title="Task to handle the incoming messages from the Serial port." alt="InputProcessorTask" shape="rect" coords="153,224,296,248"/>
-<area href="../../d4/dff/class_knob_task.html" title="Task to handle a knob." alt="KnobTask" shape="rect" coords="153,280,296,304"/>
-<area href="../../dd/d09/class_led_task.html" title="Task to handle the LEDs." alt="LedTask" shape="rect" coords="153,336,296,360"/>
-<area href="../../d4/da3/class_macro_key_task.html" title="Task to handle all macro-keys." alt="MacroKeyTask" shape="rect" coords="153,392,296,416"/>
-<area href="../../df/dfe/class_messages_cleaner_task.html" title="Task to handle the cleanup of input messages." alt="MessagesCleanerTask" shape="rect" coords="153,448,296,472"/>
-<area href="../../d9/d16/class_space_navigator_task.html" title="Task to handle the space navigator (joystick)." alt="SpaceNavigatorTask" shape="rect" coords="153,504,296,528"/>
+<area href="../../d2/d19/class_i_schedulable_dial_task.html" title="Inherits from Task and DialTask to provide one class for Tasks to implement." alt="ISchedulableDialTask" shape="rect" coords="0,56,140,80"/>
+<area href="../../d2/d56/class_capacitive_touch_task.html" title="Task to handle the capacitative touch button sensorAdapter." alt="CapacitiveTouchTask" shape="rect" coords="150,112,290,136"/>
+<area href="../../d3/d8a/class_haptic_task.html" title="Task to handle the haptic motor." alt="HapticTask" shape="rect" coords="150,168,290,192"/>
+<area href="../../d0/df8/class_input_processor_task.html" title="Task to handle the incoming messages from the Serial port." alt="InputProcessorTask" shape="rect" coords="150,224,290,248"/>
+<area href="../../d4/dff/class_knob_task.html" title="Task to handle a sensorAdapter." alt="KnobTask" shape="rect" coords="150,280,290,304"/>
+<area href="../../dd/d09/class_led_task.html" title="Task to handle the LEDs." alt="LedTask" shape="rect" coords="150,336,290,360"/>
+<area href="../../d4/da3/class_macro_key_task.html" title="Task to handle all macro-keys." alt="MacroKeyTask" shape="rect" coords="150,392,290,416"/>
+<area href="../../df/dfe/class_messages_cleaner_task.html" title="Task to handle the cleanup of input messages." alt="MessagesCleanerTask" shape="rect" coords="150,448,290,472"/>
+<area href="../../d9/d16/class_space_navigator_task.html" title="Task to handle the space navigator (joystick)." alt="SpaceNavigatorTask" shape="rect" coords="150,504,290,528"/>
+<area href="../../d5/db9/class_task_switcher_task.html" title="Task to handle switching individual tasks on and off." alt="TaskSwitcherTask" shape="rect" coords="150,560,290,584"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -228,7 +229,7 @@ Private Attributes</h2></td></tr>
 <p>The purpose of this function is to be called repeatedly each time a task is executed.</p>
 <p><em>Implementing this function is <u>optional</u> since some tasks are interrupt-driven and do not run within the <a class="el" href="../../df/d0a/main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop()</a> function.</em></p>
 
-<p>Reimplemented in <a class="el" href="../../df/dc7/class_capacitative_touch_task.html#a30077fa39a264eda53863aa415fa9dc4">CapacitativeTouchTask</a>, <a class="el" href="../../df/dfe/class_messages_cleaner_task.html#a447dc1cadb2ff55988c639b7eda43739">MessagesCleanerTask</a>, <a class="el" href="../../d3/d8a/class_haptic_task.html#add68605d1d37649b04eb29fd131f5750">HapticTask</a>, <a class="el" href="../../d0/df8/class_input_processor_task.html#abda7be9125d50db50249b075fb8a617e">InputProcessorTask</a>, <a class="el" href="../../d4/dff/class_knob_task.html#ae4f9b30978aaad0876efe69967a6bfac">KnobTask</a>, <a class="el" href="../../dd/d09/class_led_task.html#ab89fa574d5b66f7e1a2cc993faa16bbf">LedTask</a>, and <a class="el" href="../../d9/d16/class_space_navigator_task.html#a464d28c209396fd953554afd3fe9cba9">SpaceNavigatorTask</a>.</p>
+<p>Reimplemented in <a class="el" href="../../d2/d56/class_capacitive_touch_task.html#a039bba5c5547c13d343773ecf567d662">CapacitiveTouchTask</a>, <a class="el" href="../../df/dfe/class_messages_cleaner_task.html#a447dc1cadb2ff55988c639b7eda43739">MessagesCleanerTask</a>, <a class="el" href="../../d3/d8a/class_haptic_task.html#add68605d1d37649b04eb29fd131f5750">HapticTask</a>, <a class="el" href="../../d0/df8/class_input_processor_task.html#abda7be9125d50db50249b075fb8a617e">InputProcessorTask</a>, <a class="el" href="../../d4/dff/class_knob_task.html#ae4f9b30978aaad0876efe69967a6bfac">KnobTask</a>, <a class="el" href="../../dd/d09/class_led_task.html#ab89fa574d5b66f7e1a2cc993faa16bbf">LedTask</a>, <a class="el" href="../../d9/d16/class_space_navigator_task.html#a464d28c209396fd953554afd3fe9cba9">SpaceNavigatorTask</a>, and <a class="el" href="../../d5/db9/class_task_switcher_task.html#a3b4da4e8c4f460a98ae3c1d7822eda3d">TaskSwitcherTask</a>.</p>
 
 </div>
 </div>
@@ -259,7 +260,7 @@ Private Attributes</h2></td></tr>
 <p>The purpose of this function is to set up whatever task is supposed to run.</p>
 <p><em>Implementing this function is <u>optional</u> since some tasks do not need to be set up first.</em></p>
 
-<p>Reimplemented in <a class="el" href="../../df/dc7/class_capacitative_touch_task.html#adfbb24ad9a66f5388067e9e4bd723843">CapacitativeTouchTask</a>, <a class="el" href="../../d4/dff/class_knob_task.html#a55bda2fc882ca2e9f88f1fe6cfc190f9">KnobTask</a>, <a class="el" href="../../dd/d09/class_led_task.html#a2e5d6e3c58880e9ffc4af1be7edb758a">LedTask</a>, <a class="el" href="../../d4/da3/class_macro_key_task.html#a8ed9f77569ec3f0310be364d3db0b72b">MacroKeyTask</a>, and <a class="el" href="../../d9/d16/class_space_navigator_task.html#aba63d0bce26a66c0451e89957c3a08cc">SpaceNavigatorTask</a>.</p>
+<p>Reimplemented in <a class="el" href="../../d2/d56/class_capacitive_touch_task.html#aa564bbc3e794258fcf730bf738d81ac4">CapacitiveTouchTask</a>, <a class="el" href="../../d4/dff/class_knob_task.html#a55bda2fc882ca2e9f88f1fe6cfc190f9">KnobTask</a>, <a class="el" href="../../dd/d09/class_led_task.html#a2e5d6e3c58880e9ffc4af1be7edb758a">LedTask</a>, <a class="el" href="../../d4/da3/class_macro_key_task.html#a8ed9f77569ec3f0310be364d3db0b72b">MacroKeyTask</a>, <a class="el" href="../../d9/d16/class_space_navigator_task.html#aba63d0bce26a66c0451e89957c3a08cc">SpaceNavigatorTask</a>, and <a class="el" href="../../d5/db9/class_task_switcher_task.html#a26597edafbc2c491a53fea948263d835">TaskSwitcherTask</a>.</p>
 
 </div>
 </div>
@@ -298,7 +299,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d0/ddf/class_dial_task.html">DialTask</a></li>
-    <li class="footer">Generated on Sun Aug 6 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+    <li class="footer">Generated on Mon Aug 7 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
   </ul>
 </div>
 </body>

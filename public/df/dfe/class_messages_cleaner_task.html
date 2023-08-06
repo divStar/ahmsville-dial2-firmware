@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ad8e921b39f9388f82fc3c9e913404a28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dfe/class_messages_cleaner_task.html#ad8e921b39f9388f82fc3c9e913404a28">useData</a> (JsonVariantConst jsonData) override</td></tr>
-<tr class="memdesc:ad8e921b39f9388f82fc3c9e913404a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">uses the given data, usually to send it to a particular sensor  <br /></td></tr>
+<tr class="memdesc:ad8e921b39f9388f82fc3c9e913404a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">uses the given data, usually to send it to a particular sensorAdapter  <br /></td></tr>
 <tr class="separator:ad8e921b39f9388f82fc3c9e913404a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdebc0bb2e6e5b32728d2e334466e1fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dfe/class_messages_cleaner_task.html#afdebc0bb2e6e5b32728d2e334466e1fa">isValidData</a> (JsonVariantConst jsonData) override</td></tr>
 <tr class="memdesc:afdebc0bb2e6e5b32728d2e334466e1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">validates the given data (e.g. check particular JSON attributes for particular values)  <br /></td></tr>
@@ -152,7 +152,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a1b1bfeffd4e6a9e7f54d1f3ff8114272 inherit pub_methods_class_i_message_consumer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da4/class_i_message_consumer.html#a1b1bfeffd4e6a9e7f54d1f3ff8114272">IMessageConsumer</a> (LinkedList&lt; <a class="el" href="../../da/dd7/class_input_message_dto.html">InputMessageDto</a> * &gt; &amp;<a class="el" href="../../df/da4/class_i_message_consumer.html#a84dd4eb99caab7c8e472f51aae6f98fc">messagesToProcess</a>)</td></tr>
 <tr class="separator:a1b1bfeffd4e6a9e7f54d1f3ff8114272 inherit pub_methods_class_i_message_consumer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a522b84f3c176e350a8a808b3d04ccbd3 inherit pub_methods_class_i_message_consumer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da4/class_i_message_consumer.html#a522b84f3c176e350a8a808b3d04ccbd3">useData</a> (JsonVariantConst jsonData)=0</td></tr>
-<tr class="memdesc:a522b84f3c176e350a8a808b3d04ccbd3 inherit pub_methods_class_i_message_consumer"><td class="mdescLeft">&#160;</td><td class="mdescRight">uses the given data, usually to send it to a particular sensor  <br /></td></tr>
+<tr class="memdesc:a522b84f3c176e350a8a808b3d04ccbd3 inherit pub_methods_class_i_message_consumer"><td class="mdescLeft">&#160;</td><td class="mdescRight">uses the given data, usually to send it to a particular sensorAdapter  <br /></td></tr>
 <tr class="separator:a522b84f3c176e350a8a808b3d04ccbd3 inherit pub_methods_class_i_message_consumer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2000a551de03f29f6e86acae3d0f85c8 inherit pub_methods_class_i_message_consumer"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da4/class_i_message_consumer.html#a2000a551de03f29f6e86acae3d0f85c8">isValidData</a> (JsonVariantConst jsonData)=0</td></tr>
 <tr class="memdesc:a2000a551de03f29f6e86acae3d0f85c8 inherit pub_methods_class_i_message_consumer"><td class="mdescLeft">&#160;</td><td class="mdescRight">validates the given data (e.g. check particular JSON attributes for particular values)  <br /></td></tr>
@@ -168,7 +168,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Task to handle the cleanup of input messages. </p>
 <p>This class is a <a class="el" href="../../d2/d19/class_i_schedulable_dial_task.html" title="Inherits from Task and DialTask to provide one class for Tasks to implement.">ISchedulableDialTask</a>, that handles the cleanup of the messages the <a class="el" href="../../d0/df8/class_input_processor_task.html" title="Task to handle the incoming messages from the Serial port.">InputProcessorTask</a> produces. </p>
-<p>In particular it deletes all messages, that are invalid. See <a class="el" href="../../da/dd7/class_input_message_dto.html" title="DTO (data transfer object) used to transport a message from the Serial port to a sensor task.">InputMessageDto</a> for more details on when a message is valid.</p>
+<p>In particular it deletes all messages, that are invalid. See <a class="el" href="../../da/dd7/class_input_message_dto.html" title="DTO (data transfer object) used to transport a message from the Serial port to a sensorAdapter task.">InputMessageDto</a> for more details on when a message is valid.</p>
 <dl class="section author"><dt>Author</dt><dd>Igor Voronin </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>28.07.2023 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -299,7 +299,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>uses the given data, usually to send it to a particular sensor </p>
+<p>uses the given data, usually to send it to a particular sensorAdapter </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">jsonData</td><td>(JsonVariantConst) data to validate and use </td></tr>
@@ -321,7 +321,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../df/dfe/class_messages_cleaner_task.html">MessagesCleanerTask</a></li>
-    <li class="footer">Generated on Sun Aug 6 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+    <li class="footer">Generated on Mon Aug 7 2023 for AhmsVille Dial2 Firmware by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
   </ul>
 </div>
 </body>

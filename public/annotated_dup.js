@@ -1,19 +1,29 @@
 var annotated_dup =
 [
-    [ "CapacitativeTouchTask", "df/dc7/class_capacitative_touch_task.html", "df/dc7/class_capacitative_touch_task" ],
+    [ "CapacitiveTouchTask", "d2/d56/class_capacitive_touch_task.html", "d2/d56/class_capacitive_touch_task" ],
     [ "DialTask", "d0/ddf/class_dial_task.html", "d0/ddf/class_dial_task" ],
     [ "HapticTask", "d3/d8a/class_haptic_task.html", "d3/d8a/class_haptic_task" ],
+    [ "HardwareCapacitiveSensorAdapter", "df/dba/class_hardware_capacitive_sensor_adapter.html", "df/dba/class_hardware_capacitive_sensor_adapter" ],
+    [ "HardwareHapticSensorAdapter", "df/ded/class_hardware_haptic_sensor_adapter.html", "df/ded/class_hardware_haptic_sensor_adapter" ],
+    [ "HardwareMacroKeys", "dc/dac/class_hardware_macro_keys.html", "dc/dac/class_hardware_macro_keys" ],
+    [ "HardwareRotaryEncoderAdapter", "da/d3a/class_hardware_rotary_encoder_adapter.html", "da/d3a/class_hardware_rotary_encoder_adapter" ],
+    [ "HardwareSpaceNavigatorSensorAdapter", "dd/d27/class_hardware_space_navigator_sensor_adapter.html", "dd/d27/class_hardware_space_navigator_sensor_adapter" ],
+    [ "ICapacitiveSensorAdapter", "d3/d99/class_i_capacitive_sensor_adapter.html", "d3/d99/class_i_capacitive_sensor_adapter" ],
+    [ "IHapticSensorAdapter", "d5/d4d/class_i_haptic_sensor_adapter.html", "d5/d4d/class_i_haptic_sensor_adapter" ],
+    [ "IMacroKeys", "d1/dd6/class_i_macro_keys.html", "d1/dd6/class_i_macro_keys" ],
     [ "IMessageConsumer", "df/da4/class_i_message_consumer.html", "df/da4/class_i_message_consumer" ],
     [ "InputMessageDto", "da/dd7/class_input_message_dto.html", "da/dd7/class_input_message_dto" ],
     [ "InputProcessorTask", "d0/df8/class_input_processor_task.html", "d0/df8/class_input_processor_task" ],
+    [ "IRotaryEncoderAdapter", "da/d6a/class_i_rotary_encoder_adapter.html", "da/d6a/class_i_rotary_encoder_adapter" ],
     [ "ISchedulableDialTask", "d2/d19/class_i_schedulable_dial_task.html", "d2/d19/class_i_schedulable_dial_task" ],
     [ "ISerialPortUser", "de/d01/class_i_serial_port_user.html", "de/d01/class_i_serial_port_user" ],
+    [ "ISpaceNavigatorSensorAdapter", "df/d35/class_i_space_navigator_sensor_adapter.html", "df/d35/class_i_space_navigator_sensor_adapter" ],
     [ "JsonSerializer", "d2/dc5/class_json_serializer.html", "d2/dc5/class_json_serializer" ],
     [ "KnobTask", "d4/dff/class_knob_task.html", "d4/dff/class_knob_task" ],
     [ "LedTask", "dd/d09/class_led_task.html", "dd/d09/class_led_task" ],
     [ "MacroKey", "d4/de0/class_macro_key.html", "d4/de0/class_macro_key" ],
     [ "MacroKeyTask", "d4/da3/class_macro_key_task.html", "d4/da3/class_macro_key_task" ],
     [ "MessagesCleanerTask", "df/dfe/class_messages_cleaner_task.html", "df/dfe/class_messages_cleaner_task" ],
-    [ "RotaryEncoder", "db/dfd/class_rotary_encoder.html", "db/dfd/class_rotary_encoder" ],
-    [ "SpaceNavigatorTask", "d9/d16/class_space_navigator_task.html", "d9/d16/class_space_navigator_task" ]
+    [ "SpaceNavigatorTask", "d9/d16/class_space_navigator_task.html", "d9/d16/class_space_navigator_task" ],
+    [ "TaskSwitcherTask", "d5/db9/class_task_switcher_task.html", "d5/db9/class_task_switcher_task" ]
 ];

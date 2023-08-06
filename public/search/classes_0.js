@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['capacitativetouchtask_0',['CapacitativeTouchTask',['../df/dc7/class_capacitative_touch_task.html',1,'']]]
+  ['capacitivetouchtask_0',['CapacitiveTouchTask',['../d2/d56/class_capacitive_touch_task.html',1,'']]]
 ];

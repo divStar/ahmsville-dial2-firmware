@@ -1,12 +1,10 @@
 #ifndef DIALER_SPACENAVIGATORTASK_H
 #define DIALER_SPACENAVIGATORTASK_H
 
-#include <Arduino.h>
-#include "../../lib/mpu6050-custom/helper_3dmath.h"
-#include "../../lib/mpu6050-custom/MPU6050.h"
 #include "interfaces/ISchedulableDialTask.h"
 #include "logger/Logger.h"
 #include "json/JsonSerializer.h"
+#include "interfaces/sensors/ISpaceNavigatorSensorAdapter.h"
 
 /**
  * @class   SpaceNavigatorTask
@@ -21,8 +19,10 @@ class SpaceNavigatorTask : public ISchedulableDialTask, private ISerialPortUser 
 public:
     /**
      * @brief Constructor.
+     *
+     * @param sensorAdapter (ISpaceNavigatorSensorAdapter) sensor adapter to use
      */
-    SpaceNavigatorTask();
+    explicit SpaceNavigatorTask(ISpaceNavigatorSensorAdapter &sensorAdapter);
 
     void onSetup() override;
 
@@ -30,28 +30,14 @@ public:
 
 private:
     /**
-     * @brief Number of the pin, that is being written to to start the space navigator capabilities.
+     * @brief Buffer size of the JSON output.
      */
-    static const auto STARTER_PIN = 30;
-    /**
-     * @brief Number of the interrupt pin.
-     */
-    static const auto INTERRUPT_PIN = 2;
+    static const int BUFFER_SIZE = 256;
 
     /**
-     * @brief This variable describes if DMP completed. The dummy value should be overwritten during setup().
+     * @brief sensor adapter handling sensor-related functionality
      */
-    unsigned int dmpInitDone = 100;
-
-    /**
-     * @brief MPU6050, that is used to set up and receive the accelerometer as well as the gyroscope.
-     */
-    MPU6050 mpu;
-
-    /**
-     * @brief This function currently has no use, but is passed to `attachInterrupt` on set up.
-     */
-    static void dmpDataReady();
+    ISpaceNavigatorSensorAdapter &sensorAdapter;
 };
 
 

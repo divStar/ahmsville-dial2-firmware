@@ -1,14 +1,14 @@
 #ifndef DIALER_HAPTICTASK_H
 #define DIALER_HAPTICTASK_H
 
-#include <FastLED.h>
 #include <LinkedList.h>
-#include "ArduinoJson.h"
+#include <ArduinoJson.h>
 #include "interfaces/IMessageConsumer.h"
 #include "inputprocessor/InputMessageDto.h"
 #include "logger/Logger.h"
 #include "interfaces/ISchedulableDialTask.h"
 #include "json/JsonSerializer.h"
+#include "interfaces/sensors/IHapticSensorAdapter.h"
 
 /**
  * @class   HapticTask
@@ -24,18 +24,14 @@ public:
     /**
      * @brief Constructor.
      *
+     * @param sensorAdapter (IHapticSensorAdapter) sensor adapter to use
      * @param messagesToProcess (LinkedList<InputMessageDto *>*) reference to the list containing messages to be processed
      */
-    explicit HapticTask(LinkedList<InputMessageDto *> &messagesToProcess);
+    explicit HapticTask(IHapticSensorAdapter &sensorAdapter, LinkedList<InputMessageDto *> &messagesToProcess);
 
     void onCallback() override;
 
 private:
-    /**
-     * @brief pin number for the haptic vibration motor.
-     */
-    static const int HAPTIC_PIN = 4;
-
     /**
      * @brief Buffer size of the JSON output.
      */
@@ -45,6 +41,11 @@ private:
      * @brief JSON-formatted filter string, that describes which attributes are kept when parsing a message.
      */
     StaticJsonDocument<64> filterDoc; // this JSON describes what to filter for
+
+    /**
+     * @brief sensor adapter handling sensor-related functionality
+     */
+    IHapticSensorAdapter &sensorAdapter;
 
     void useData(JsonVariantConst jsonData) override;
 

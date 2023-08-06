@@ -11,7 +11,6 @@
 #ifndef DIALER_LOGGER_H
 #define DIALER_LOGGER_H
 
-#include <Arduino.h>
 #include "ArduinoLog.h"
 #include "RTCZero.h"
 #include "interfaces/ISerialPort.h"

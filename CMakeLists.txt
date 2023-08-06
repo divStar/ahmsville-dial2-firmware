@@ -30,4 +30,4 @@ add_custom_target(
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/interfaces/ISerialPortUser.h src/interfaces/ISerialPort.h)
+add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/interfaces/ISerialPortUser.h src/interfaces/ISerialPort.h src/taskswitcher/TaskSwitcherTask.h src/interfaces/sensors/ICapacitiveSensorAdapter.h src/hardware-adapters/HardwareCapacitiveSensorAdapter.h src/interfaces/sensors/IHapticSensorAdapter.h src/hardware-adapters/HardwareHapticSensorAdapter.h src/interfaces/sensors/ISpaceNavigatorSensorAdapter.h src/hardware-adapters/HardwareSpaceNavigatorSensorAdapter.h src/interfaces/sensors/IRotaryEncoderAdapter.h src/hardware-adapters/HardwareMacroKeys.h src/interfaces/sensors/IMacroKeys.h)

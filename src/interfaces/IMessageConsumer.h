@@ -23,7 +23,7 @@ public:
             : messagesToProcess(messagesToProcess) {};
 
     /**
-     * @brief uses the given data, usually to send it to a particular sensor
+     * @brief uses the given data, usually to send it to a particular sensorAdapter
      *
      * @param jsonData  (JsonVariantConst) data to validate and use
      */

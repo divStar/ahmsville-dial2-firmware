@@ -7,6 +7,7 @@ void setup() {
 
     setupLogger();
 
+    createSensorAdapters();
     createTasks();
     setupTasks();
     addTasksToScheduler();
@@ -18,6 +19,22 @@ void loop() {
     scheduler.execute();
 }
 
+void createSensorAdapters() {
+    macroKeys = new HardwareMacroKeys("macrokey");
+    upperKnobSensor = new HardwareRotaryEncoderAdapter(KNOB_UPPER_PIN_0,
+                                                       KNOB_UPPER_PIN_1,
+                                                       KNOB_UPPER_PIN_INTERRUPT_0,
+                                                       KNOB_UPPER_PIN_INTERRUPT_1);
+    lowerKnobSensor = new HardwareRotaryEncoderAdapter(KNOB_LOWER_PIN_0,
+                                                       KNOB_LOWER_PIN_1,
+                                                       KNOB_LOWER_PIN_INTERRUPT_0,
+                                                       KNOB_LOWER_PIN_INTERRUPT_1);
+    hapticSensor = new HardwareHapticSensorAdapter(HAPTIC_PIN);
+    capacitiveSensor = new HardwareCapacitiveSensorAdapter(CAP_TOUCH_SENDING_PIN, CAP_TOUCH_RECEIVING_PIN);
+    spaceNavigatorSensor = new HardwareSpaceNavigatorSensorAdapter(SPACE_NAVIGATOR_STARTER_PIN,
+                                                                   SPACE_NAVIGATOR_INTERRUPT_PIN);
+}
+
 /**
  * This method creates all scheduled tasks, that run within this program.
  */
@@ -25,12 +42,12 @@ void createTasks() {
     inputProcessorTask = new InputProcessorTask(messagesToProcess);
     messagesCleanerTask = new MessagesCleanerTask(messagesToProcess);
     ledTask = new LedTask(messagesToProcess);
-    writeMacroKeyTask = new MacroKeyTask();
-    upperKnobTask = new KnobTask("UpperKnob", A1, A0, 38, 27);
-    lowerKnobTask = new KnobTask("LowerKnob", A2, A3, 42, 13);
-    hapticTask = new HapticTask(messagesToProcess);
-    capacitativeTouchTask = new CapacitativeTouchTask(9, 8);
-    spaceNavigatorTask = new SpaceNavigatorTask();
+    macroKeyTask = new MacroKeyTask(*macroKeys);
+    upperKnobTask = new KnobTask("UpperKnob", *upperKnobSensor);
+    lowerKnobTask = new KnobTask("LowerKnob", *lowerKnobSensor);
+    hapticTask = new HapticTask(*hapticSensor, messagesToProcess);
+    capacitiveTouchTask = new CapacitiveTouchTask(*capacitiveSensor);
+    spaceNavigatorTask = new SpaceNavigatorTask(*spaceNavigatorSensor);
 }
 
 /**
@@ -46,8 +63,8 @@ void setupTasks() {
     ledTask->onSetup();
     ledTask->setCallback([]() { ledTask->onCallback(); });
 
-    writeMacroKeyTask->onSetup();
-    writeMacroKeyTask->setCallback([]() { writeMacroKeyTask->onCallback(); });
+    macroKeyTask->onSetup();
+    macroKeyTask->setCallback([]() { macroKeyTask->onCallback(); });
 
     lowerKnobTask->onSetup();
     lowerKnobTask->setCallback([]() { lowerKnobTask->onCallback(); });
@@ -58,8 +75,8 @@ void setupTasks() {
     hapticTask->onSetup();
     hapticTask->setCallback([]() { hapticTask->onCallback(); });
 
-    capacitativeTouchTask->onSetup();
-    capacitativeTouchTask->setCallback([]() { capacitativeTouchTask->onCallback(); });
+    capacitiveTouchTask->onSetup();
+    capacitiveTouchTask->setCallback([]() { capacitiveTouchTask->onCallback(); });
 
     spaceNavigatorTask->onSetup();
     spaceNavigatorTask->setCallback([]() { spaceNavigatorTask->onCallback(); });
@@ -72,15 +89,22 @@ void addTasksToScheduler() {
     scheduler.addTask(*inputProcessorTask);
     scheduler.addTask(*messagesCleanerTask);
     scheduler.addTask(*ledTask);
-    scheduler.addTask(*writeMacroKeyTask);
+    scheduler.addTask(*macroKeyTask);
     scheduler.addTask(*lowerKnobTask);
     scheduler.addTask(*upperKnobTask);
     scheduler.addTask(*hapticTask);
-    scheduler.addTask(*capacitativeTouchTask);
+    scheduler.addTask(*capacitiveTouchTask);
     scheduler.addTask(*spaceNavigatorTask);
 
-    scheduler.enableAll();
+//    scheduler.enableAll();
 
-    capacitativeTouchTask->disable();
-    upperKnobTask->disable();
+    inputProcessorTask->enable();
+    messagesCleanerTask->enable();
+    ledTask->enable();
+    macroKeyTask->enable();
+    lowerKnobTask->enable();
+    upperKnobTask->enable();
+    hapticTask->enable();
+    capacitiveTouchTask->enable();
+    spaceNavigatorTask->enable();
 }

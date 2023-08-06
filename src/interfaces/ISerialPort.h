@@ -1,5 +1,5 @@
 /**
- * @file   SerialPort.h
+ * @file    SerialPort.h
  * @brief   Defines a constant to use as the SERIAL_PORT.
  *
  * @author  Igor Voronin
@@ -8,8 +8,6 @@
 
 #ifndef DIALER_ISERIALPORT_H
 #define DIALER_ISERIALPORT_H
-
-#include <Arduino.h>
 
 inline Serial_ &configuredSerialPort() {
     return SerialUSB;

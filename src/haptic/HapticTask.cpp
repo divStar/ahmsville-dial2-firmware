@@ -1,8 +1,8 @@
 #include "HapticTask.h"
 
-HapticTask::HapticTask(LinkedList<InputMessageDto *> &messagesToProcess)
+HapticTask::HapticTask(IHapticSensorAdapter &sensorAdapter, LinkedList<InputMessageDto *> &messagesToProcess)
         : ISchedulableDialTask("haptic"), ISerialPortUser(configuredSerialPort()),
-          IMessageConsumer(messagesToProcess) {
+          IMessageConsumer(messagesToProcess), sensorAdapter(sensorAdapter) {
     setInterval(0);
     setIterations(TASK_FOREVER);
     filterDoc["type"] = true;
@@ -39,7 +39,7 @@ void HapticTask::useData(JsonVariantConst jsonData) {
     if (isValidData(jsonData)) {
         Log.traceln("[%s] Setting haptic with strength %d", getTaskType(), jsonData["strength"].as<byte>());
 
-        analogWrite(HAPTIC_PIN, jsonData["strength"].as<byte>());
+        sensorAdapter.writeStrength(jsonData["strength"].as<byte>());
     }
 }
 

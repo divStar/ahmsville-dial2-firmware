@@ -1,6 +1,6 @@
-#include "RotaryEncoder.h"
+#include "HardwareRotaryEncoderAdapter.h"
 
-RotaryEncoder::RotaryEncoder(int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
+HardwareRotaryEncoderAdapter::HardwareRotaryEncoderAdapter(int pin0, int pin1, int pinInterrupt0, int pinInterrupt1)
         : pin0(pin0), pin1(pin1),
           filteredSensor1Value(9, 1.0, 0.02), filteredSensor2Value(9, 1.0, 0.02) {
     pinMode(pin0, INPUT);
@@ -9,7 +9,7 @@ RotaryEncoder::RotaryEncoder(int pin0, int pin1, int pinInterrupt0, int pinInter
     pinMode(pinInterrupt1, INPUT);
 }
 
-void RotaryEncoder::readValues() {
+void HardwareRotaryEncoderAdapter::readValues() {
     // Read new values
     values[0] = static_cast<float>(analogRead(pin0));
     values[1] = static_cast<float>(analogRead(pin1));
@@ -21,8 +21,8 @@ void RotaryEncoder::readValues() {
     currentRotationAngleDelta = calculateRotationAngleDelta();
 }
 
-float RotaryEncoder::calculateRotationAngleDelta() {
-    // Get sensor values
+float HardwareRotaryEncoderAdapter::calculateRotationAngleDelta() {
+    // Get sensorAdapter values
     auto normalizedSensor1Value = values[0] - SENSOR_MIDPOINT;
     auto normalizedSensor2Value = values[1] - SENSOR_MIDPOINT;
 
@@ -42,7 +42,7 @@ float RotaryEncoder::calculateRotationAngleDelta() {
     return rotationAngleDelta;
 }
 
-float RotaryEncoder::getRotationAngleDelta() const {
+float HardwareRotaryEncoderAdapter::getRotationAngleDelta() const {
     return currentRotationAngleDelta;
 }
 

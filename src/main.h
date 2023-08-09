@@ -11,25 +11,25 @@
 #ifndef DIALER_MAIN_H
 #define DIALER_MAIN_H
 
-#include <TaskScheduler.h>
 #include <LinkedList.h>
-#include "logger/Logger.h"
-#include "interfaces/ISerialPort.h"
+#include <TaskScheduler.h>
+#include "captouch/CapacitiveTouchTask.h"
+#include "dataprocessor/MessagesCleanerTask.h"
+#include "haptic/HapticTask.h"
 #include "hardware-adapters/HardwareCapacitiveSensorAdapter.h"
 #include "hardware-adapters/HardwareHapticSensorAdapter.h"
-#include "hardware-adapters/HardwareSpaceNavigatorSensorAdapter.h"
-#include "hardware-adapters/HardwareRotaryEncoderAdapter.h"
 #include "hardware-adapters/HardwareMacroKeys.h"
+#include "hardware-adapters/HardwareRotaryEncoderAdapter.h"
+#include "hardware-adapters/HardwareSpaceNavigatorSensorAdapter.h"
 #include "inputprocessor/InputProcessorTask.h"
-#include "dataprocessor/MessagesCleanerTask.h"
-#include "led/LedTask.h"
-#include "macrokey/MacroKeyTask.h"
+#include "interfaces/ISerialPort.h"
 #include "knob/KnobTask.h"
-#include "haptic/HapticTask.h"
-#include "captouch/CapacitiveTouchTask.h"
+#include "led/LedTask.h"
+#include "logger/Logger.h"
+#include "macrokey/MacroKeyTask.h"
 #include "spacenavigator/SpaceNavigatorTask.h"
 
-#define SERIAL_USB_TIMEOUT  200
+#define SERIAL_USB_TIMEOUT 200
 
 /**
  * @brief pin 0 of the upper sensorAdapter.
@@ -76,7 +76,8 @@ static const uint8_t CAP_TOUCH_SENDING_PIN = 9;
  */
 static const uint8_t CAP_TOUCH_RECEIVING_PIN = 8;
 /**
- * @brief Number of the pin, that is being written to to start the space navigator capabilities.
+ * @brief Number of the pin, that is being written to to start the space
+ * navigator capabilities.
  */
 static const byte SPACE_NAVIGATOR_STARTER_PIN = 30;
 /**
@@ -85,7 +86,8 @@ static const byte SPACE_NAVIGATOR_STARTER_PIN = 30;
 static const byte SPACE_NAVIGATOR_INTERRUPT_PIN = 2;
 
 /**
- * @brief TaskScheduler to use in order to distribute the available CPU cycles properly.
+ * @brief TaskScheduler to use in order to distribute the available CPU cycles
+ * properly.
  */
 Scheduler scheduler;
 
@@ -127,8 +129,9 @@ void createTasks();
 void setupTasks();
 
 /**
- * @brief Adds all ISchedulableDialTask objects to the Scheduler and enables them.
+ * @brief Adds all ISchedulableDialTask objects to the Scheduler and enables
+ * them.
  */
 void addTasksToScheduler();
 
-#endif //DIALER_MAIN_H
+#endif // DIALER_MAIN_H

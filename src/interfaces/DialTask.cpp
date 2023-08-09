@@ -2,6 +2,4 @@
 
 DialTask::DialTask(const char *type) : taskType(type) {}
 
-const char *DialTask::getTaskType() const {
-    return taskType;
-}
+const char *DialTask::getTaskType() const { return taskType; }

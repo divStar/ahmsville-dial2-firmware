@@ -18,7 +18,7 @@
 /**
  * @brief Default Log format.
  */
-static const char *const DEFAULT_LOG_FORMAT = "%02u:%02u:%02u.%03u ";
+static const char *DEFAULT_LOG_FORMAT = "%02u:%02u:%02u.%03u ";
 
 /**
  * @brief Prints the timestamp, prepending the actual message.
@@ -48,4 +48,4 @@ void printPrefix(Print *serial, int logLevel);
  */
 void setupLogger();
 
-#endif //DIALER_LOGGER_H
+#endif // DIALER_LOGGER_H

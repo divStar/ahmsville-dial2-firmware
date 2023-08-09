@@ -9,8 +9,8 @@
 #ifndef DIALER_ISERIALPORT_H
 #define DIALER_ISERIALPORT_H
 
-inline Serial_ &configuredSerialPort() {
-    return SerialUSB;
-}
+#include <USB/USBAPI.h>
 
-#endif //DIALER_ISERIALPORT_H
+inline Serial_ &configuredSerialPort() { return SerialUSB; }
+
+#endif // DIALER_ISERIALPORT_H

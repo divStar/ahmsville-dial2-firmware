@@ -6,27 +6,28 @@
 
 /**
  * @class   HardwareHapticSensorAdapter
- * @brief   The actual hardware implementation of the haptic sensor adapter used by the application.
+ * @brief   The actual hardware implementation of the haptic sensor adapter used
+ * by the application.
  *
  * @author  Igor Voronin
  * @date    06.08.2023
  */
 class HardwareHapticSensorAdapter : public IHapticSensorAdapter {
 public:
-    /**
-     * @brief Constructor.
-     *
-     * @param hapticPin (byte) pin of the haptic sensor
-     */
-    explicit HardwareHapticSensorAdapter(byte hapticPin);
+  /**
+   * @brief Constructor.
+   *
+   * @param hapticPin (byte) pin of the haptic sensor
+   */
+  explicit HardwareHapticSensorAdapter(byte hapticPin);
 
-    void writeStrength(byte strength) override;
+  void writeStrength(byte strength) override;
 
 private:
-    /**
-     * @brief pin of the haptic sensor.
-     */
-    byte hapticPin;
+  /**
+   * @brief pin of the haptic sensor.
+   */
+  byte hapticPin;
 };
 
-#endif //DIALER_HARDWAREHAPTICSENSORADAPTER_H
+#endif // DIALER_HARDWAREHAPTICSENSORADAPTER_H

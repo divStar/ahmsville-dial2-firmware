@@ -18,16 +18,15 @@
  */
 class MacroKeyTask : public ISchedulableDialTask {
 public:
-    /**
-     * @brief Constructor.
-     */
-    explicit MacroKeyTask(IMacroKeys &macroKeys);
+  /**
+   * @brief Constructor.
+   */
+  explicit MacroKeyTask(IMacroKeys &macroKeys);
 
-    void onSetup() override;
+  void onSetup() override;
 
 private:
-    IMacroKeys &macroKeys;
+  IMacroKeys &macroKeys;
 };
 
-
-#endif //DIALER_MACROKEYTASK_H
+#endif // DIALER_MACROKEYTASK_H
